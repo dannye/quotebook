@@ -1,0 +1,256 @@
+
+/* all pages */
+
+* {
+	margin: 0;
+	border: 0;
+	padding: 0;
+	box-sizing: border-box;
+	color: White;
+	background-color: rgb(233, 235, 238);
+	font-family: "Tahoma", "Lucida Grande";
+}
+
+header {
+	color: white;
+	background-color: rgb(59, 89, 152);
+	width: 100%;
+	height: 100px;
+	max-height: 270px;
+	overflow: auto;
+}
+
+footer {
+	color: black;
+	height: 10px;
+	font-size: 0.9rem;
+	text-align: center;
+	margin-top: 30px;
+}
+
+#title {
+	font-size: 2.5rem;
+	text-align: center;
+	padding: 20px;
+	background-color: inherit;
+}
+
+#facebook-logo {
+	background-color: inherit;
+	width: 10%;
+	margin-right: 10px;
+}
+
+a {
+	text-decoration: none;
+	background-color: inherit;
+}
+
+/* index */
+
+#page-index {
+	width: 60%;
+	min-width: 500px;
+	min-height: calc(100vh - 300px);
+	text-align: center;
+	border: 1px solid lightgray;
+	border-radius: 2px;
+	margin: 50px auto;
+	height: 13rem;
+	background-color: white;
+	padding: 2rem 0;
+}
+
+#home-button {
+	width: 5%;
+	background-color: inherit;
+	float: left;
+}
+
+#login-link {
+	background-color: inherit;
+	margin-left: 10px;
+	text-decoration: none;
+	font-size: 1.5rem;
+	float: right;
+}
+
+#user {
+	background-color: inherit;
+	margin-left: 10px;
+	text-decoration: none;
+	font-size: 1.5rem;
+	float: right;
+}
+
+#gear {
+	background-color: inherit;
+	width: 2%;
+	margin-right: 10px;
+}
+
+#left-column {
+	float: left;
+	width: 10%;
+}
+
+#game-button {
+	width: 50%;
+	background-color: rgb(59, 89, 152);
+	margin: 10px;
+	border: 2px solid darkgray;
+	border-radius: 5px;
+}
+
+#filter-box {
+	background-color: white;
+	height: 400px;
+	margin: 10px;
+	padding: 5px;
+	border: 2px solid lightgray;
+	border-radius: 2px;
+}
+
+#page-index input#search {
+	color: black;
+	background-color: white;
+	border: 2px solid darkgray;
+	border-radius: 2px;
+	text-align: left;
+	min-width: 400px;
+	font-size: 1.1rem;
+	margin: 10px;
+	margin-top: 200px;
+	padding: 10px;
+}
+
+#magnifying-glass {
+	width: 3%;
+	background-color: white;
+}
+
+/* log in */
+
+#page-login {
+	width: 60%;
+	min-width: 500px;
+	min-height: calc(100vh - 300px);
+	text-align: center;
+	border: 1px solid lightgray;
+	border-radius: 2px;
+	margin: 50px auto;
+	height: 13rem;
+	background-color: white;
+	padding: 2rem 0;
+}
+
+#wordmark {
+	width: 40%;
+}
+
+fieldset {
+	background-color: white;
+}
+
+input#username,
+input#password {
+	color: black;
+	background-color: white;
+	border: 2px solid darkgray;
+	border-radius: 2px;
+	text-align: left;
+	min-width: 400px;
+	font-size: 2rem;
+	margin: 10px;
+	padding: 5px;
+}
+
+#login-button {
+	color: white;
+	background-color: rgb(66, 103, 178);
+	border: 1px solid rgb(41, 72, 125);
+	border-radius: 2px;
+	padding: 3px;
+	font-size: 1.1rem;
+}
+
+/* home (post log in) */
+
+#page-home {
+	width: 60%;
+	min-width: 500px;
+	min-height: calc(100vh - 300px);
+	text-align: center;
+	border: 1px solid lightgray;
+	border-radius: 2px;
+	margin: 50px auto;
+	height: 13rem;
+	background-color: white;
+	padding: 2rem 0;
+}
+
+#page-home input#search {
+	color: black;
+	background-color: white;
+	border: 2px solid darkgray;
+	border-radius: 2px;
+	text-align: left;
+	min-width: 400px;
+	font-size: 1.1rem;
+	margin: 10px;
+	padding: 10px;
+}
+
+/* search results */
+
+#page-search {
+	width: 60%;
+	min-width: 500px;
+	min-height: calc(100vh - 300px);
+	text-align: center;
+	border: 1px solid lightgray;
+	border-radius: 2px;
+	margin: 50px auto;
+	height: 13rem;
+	background-color: white;
+	padding: 2rem 0;
+}
+
+/* quote */
+
+#page-quote {
+	width: 60%;
+	min-width: 500px;
+	min-height: calc(100vh - 300px);
+	text-align: center;
+	border: 1px solid lightgray;
+	border-radius: 2px;
+	margin: 50px auto;
+	height: 13rem;
+	background-color: white;
+	padding: 2rem 0;
+}
+
+/* game */
+
+#page-game,
+#page-question1,
+#page-gameover {
+	width: 60%;
+	min-width: 500px;
+	min-height: calc(100vh - 300px);
+	text-align: center;
+	border: 1px solid lightgray;
+	border-radius: 2px;
+	margin: 50px auto;
+	height: 13rem;
+	background-color: white;
+	padding: 2rem 0;
+}
+
+.answer-button {
+	text-align: center;
+	border: 2px solid darkgray;
+	border-radius: 20px;
+	margin: 50px auto;
+}
