@@ -1,18 +1,5 @@
-#page-login {
-	width: 60%;
-	min-width: 500px;
-	min-height: calc(100vh - 300px);
-	text-align: center;
-	border: 1px solid lightgray;
-	border-radius: 2px;
-	margin: 50px auto;
-	height: 13rem;
-	background-color: white;
-	padding: 2rem 0;
-}
-
 #wordmark {
-	width: 40%;
+	width: 350px;
 }
 
 fieldset {

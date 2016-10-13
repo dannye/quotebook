@@ -1,4 +1,4 @@
-<!-- File: index.html -->
+<!-- File: search_actor.html -->
 <!DOCTYPE HTML>
 <html lang="en">
 	<head>
@@ -11,10 +11,10 @@
 	<body>
 		<header>
 			<a href="home.html"><img alt="img" id="home-button" src="../images/home.png"/></a>
-			<section id="title"></section>
-			<div id="user">
-				<img alt="img" id="facebook-logo" src="../images/facebook.png"/>John Doe
-				<!-- <a href="../index.html"><img alt="img" id="gear" src="../images/gear.png"/></a> -->
+			<div class="ribbon">
+				<img alt="img" id="facebook-logo" src="../images/facebook.png" />
+				<a href="../index.html"><img alt="img" id="gear" src="../images/gear.png"/></a>
+				<div id="user" href="html/login.html">John Doe</div>
 			</div>
 		</header>
 		
@@ -22,11 +22,25 @@
 			<a href="game.html"><img alt="img" id="game-button" src="../images/game.png"/></a>
 			<br>
 			<div id="filter-box">
-			
+				<h4 id="filter-header">Filters</h4>
+				<div class="filter-label">Quote
+				<input type="checkbox" name="quote-check" class="filter-check"/></div>
+				<div class="filter-label">Movie
+				<input type="checkbox" name="movie-check" class="filter-check"/></div>
+				<div class="filter-label">TV Show
+				<input type="checkbox" name="tv-check" class="filter-check"/></div>
+				<div class="filter-label">Novel
+				<input type="checkbox" name="novel-check" class="filter-check"/></div>
+				<div class="filter-label">Actor
+				<input type="checkbox" name="actor-check" class="filter-check"/></div>
+				<input type="text" class="filter-text">
+				<div class="filter-label">Character
+				<input type="checkbox" name="char-check" class="filter-check"/></div>
+				<input type="text" class="filter-text">
 			</div>
 		</div>
 		
-		<div id="page-search-actor">
+		<div id="page">
 			
 		</div>
 		
