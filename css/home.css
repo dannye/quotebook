@@ -14,7 +14,7 @@
 #trending-title {
 	color: rgb(59, 89, 152);
 	text-align: left;
-	background: inherit;
+	background-color: inherit;
 	padding-top: 20px;
 	padding-left: 50px;
 	border-top: 2px solid lightgray;
