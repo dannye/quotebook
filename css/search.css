@@ -33,6 +33,22 @@ tr {
 	outline: 2px solid gray;
 }
 
+#asc, #desc {
+	text-decoration: underline;
+}
+
+#up-arrow {
+	position: relative;
+	top: -10px;
+	left: 10px;
+}
+
+#down-arrow {
+	position: relative;
+	top: 10px;
+	left: -11px;
+}
+
 #per-page {
 	background-color: inherit;
 	float: left;
