@@ -1,0 +1,64 @@
+#page input#search {
+	background-color: white;
+	border: 2px solid darkgray;
+	border-radius: 2px;
+	text-align: left;
+	min-width: 400px;
+	font-size: 1.1rem;
+	margin-top: 10px;
+	margin-bottom: 30px;
+	padding: 10px;
+}
+
+#results {
+	width: 80%;
+	margin: auto;
+	overflow: scroll;
+	max-height: calc(100% - 150px);
+	padding: 2px;
+}
+
+table {
+	background-color: inherit;
+}
+
+th, td {
+	background-color: inherit;
+	padding: 10px;
+	font-size: 1.2rem;
+	border-left: 1px solid white;
+}
+
+tr {
+	outline: 2px solid gray;
+}
+
+#per-page {
+	background-color: inherit;
+	float: left;
+	font-size: 1.2rem;
+	margin-left: 50px;
+	position: absolute;
+	bottom: 30px;
+}
+
+#current-rpp {
+	background-color: inherit;
+	text-decoration: underline;
+}
+
+#page-arrows {
+	background-color: inherit;
+	float: right;
+	font-size: 1.2rem;
+	position: absolute;
+	bottom: 30px;
+	right: 50px;
+	white-space: pre;
+}
+
+#page-arrow {
+	border: 1px solid gray;
+	border-radius: 3px;
+	padding: 3px;
+}

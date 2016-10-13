@@ -4,7 +4,7 @@
 	border: 0;
 	padding: 0;
 	box-sizing: border-box;
-	color: White;
+	color: black;
 	background-color: rgb(233, 235, 238);
 	font-family: "Tahoma", "Lucida Grande";
 }
@@ -17,7 +17,6 @@ header {
 }
 
 footer {
-	color: black;
 	width: 100%;
 	height: 10px;
 	font-size: 0.9rem;
@@ -101,6 +100,7 @@ a {
 	margin: 50px auto;
 	background-color: white;
 	padding: 2rem 0;
+	position: relative;
 }
 
 #left-column {
@@ -119,14 +119,12 @@ a {
 }
 
 #filter-header	{
-	color: black;
 	text-align: center;
 	background: white;
 	border-bottom: 2px solid darkgray;
 }
 
 #filter-box {
-	color: black;
 	background-color: white;
 	height: 310px;
 	margin: 10px;
@@ -163,7 +161,6 @@ a {
 }
 
 .filter-text {
-	color: black;
 	float: left;
 	background-color: white;
 	border: 2px solid darkgray;
