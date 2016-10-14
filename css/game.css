@@ -23,3 +23,38 @@
 #game-screen-pic {
 	width: 250px;
 }
+
+#gameover-screen-pic {
+	width: 250px;
+}
+.question-display-div {
+	width: 80%;
+	height: 11rem;
+	border: 2px solid lightgray;
+	border-radius: 2px;
+	margin: 20px auto;
+	padding: 2rem;
+	font-size:25px;
+}
+.score-display-div {
+	text-align: center;
+	width: 40%;
+	height: 6rem;
+	border: 2px solid lightgray;
+	border-radius: 2px;
+	margin: 40px auto;
+	padding: 2rem;
+	font-size:40px;
+}
+#try-again {
+float: left;
+margin: 20px 0 0 340px;
+padding: 2rem;
+width: 175px;
+}
+#main-menu {
+float: right;
+margin: 20px 340px 0 0;
+padding: 2rem;
+width: 175px;
+}
