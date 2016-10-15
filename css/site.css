@@ -172,3 +172,16 @@ a {
 .filter-label:nth-child(2) {
 	border: 0;
 }
+
+.fb-like {
+	height: 20px;
+	width: 20px;
+	float: right;
+	margin: 5px;
+}
+
+.fb-share {
+	height: 30px;
+	width: 70px;
+	float: right;
+}

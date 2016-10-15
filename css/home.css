@@ -18,21 +18,9 @@
 	border-top: 2px solid lightgray;
 }
 
-.fb-like {
-	height: 20px;
-	width: 20px;
-	float: right;
-	margin: 5px;
-}
-
-.fb-share {
-	height: 30px;
-	width: 70px;
-	float: right;
-}
-
 .trending {
 	background-color: inherit;
+	overflow-y: scroll;
 	height: 75%;
 }
 

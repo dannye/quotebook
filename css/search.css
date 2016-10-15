@@ -13,7 +13,7 @@
 #results {
 	width: 80%;
 	margin: auto;
-	overflow: scroll;
+	overflow-y: scroll;
 	max-height: calc(100% - 150px);
 	padding: 2px;
 }
@@ -27,6 +27,7 @@ th, td {
 	padding: 10px;
 	font-size: 1.2rem;
 	border-left: 1px solid white;
+	width: 25%;
 }
 
 tr {
@@ -47,6 +48,10 @@ tr {
 	position: relative;
 	top: 10px;
 	left: -11px;
+}
+
+#selected {
+	margin-bottom: 30px;
 }
 
 #per-page {
