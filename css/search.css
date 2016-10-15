@@ -13,6 +13,7 @@
 #results {
 	width: 80%;
 	margin: auto;
+	margin-bottom: 100px;
 	overflow-y: scroll;
 	max-height: calc(100% - 150px);
 	padding: 2px;
@@ -41,7 +42,7 @@ tr {
 #up-arrow {
 	position: relative;
 	top: -10px;
-	left: 10px;
+	left: 5px;
 }
 
 #down-arrow {

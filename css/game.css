@@ -8,8 +8,7 @@
 	margin-top: 10px;
 	margin-bottom:10px;
 	display: block;
-	-moz-border-radius: 15px;
- 	-webkit-border-radius: 15px;
+	border-radius: 15px;
 	cursor: pointer;
 }
 .button:hover {background-color: rgb(125, 143, 178)}
@@ -36,22 +35,22 @@
 
 .question-display-div {
 	width: 80%;
-	height: 11rem;
+	height: auto;
 	border: 2px solid lightgray;
 	border-radius: 2px;
 	margin: 20px auto;
-	padding: 2rem;
+	padding: 20px;
 	font-size:25px;
 }
 
 .score-display-div {
 	text-align: center;
-	width: 40%;
+	width: 50%;
 	height: 6rem;
 	border: 2px solid lightgray;
 	border-radius: 2px;
 	margin: 40px auto;
-	padding: 2rem;
+	padding: 20px;
 	font-size:40px;
 }
 

@@ -32,3 +32,12 @@
 	margin: 20px auto;
 	padding: 2rem;
 }
+
+#submit-quote {
+	background-color: rgb(59, 89, 152);
+	padding: 10px;
+	margin: 10px;
+	border: 2px solid darkgray;
+	border-radius: 5px;
+	color: white;
+}

@@ -1,0 +1,49 @@
+<!-- File: submit.html -->
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Quotebook</title>
+		<link rel="stylesheet" href="../css/site.css" />
+		<link rel="stylesheet" href="../css/submit.css" />
+		<link rel="icon" href="../images/favicon.ico" type="image/x-icon" />
+	</head>
+	
+	<body>
+		<header>
+			<a href="home.html"><img alt="img" id="home-button" src="../images/home.png"/></a>
+			<div class="ribbon">
+				<img alt="img" id="facebook-logo" src="../images/facebook.png" />
+				<a href="../index.html"><img alt="img" id="gear" src="../images/gear.png"/></a>
+				<div id="user" href="html/login.html">John Doe</div>
+			</div>
+		</header>
+		
+		<div id="page">
+			<h2 id="submit-title">Submit Quote</h2>
+			<fieldset id="submit-form">
+			<div id="submit-fields">
+				<h4 id="submit-label">Quote:</h4>
+				<input type="text" id="quote" name="quote" placeholder=""/><br>
+				<h4 id="submit-label">Character:</h4>
+				<input type="text" id="character" name="character" placeholder=""/><br>
+				<h4 id="submit-label">Actor:</h4>
+				<input type="text" id="actor" name="actor" placeholder=""/><br>
+				<h4 id="submit-label">Title:</h4>
+				<input type="text" id="title" name="title" placeholder=""/><br><br>
+			</div>
+			<div id="submit-radio">
+				<input type="radio" name="media" value="movie" checked><div id="radio-label">Movie</div></input><br><br>
+				<input type="radio" name="media" value="tv-show"><div id="radio-label">TV Show</div></input><br><br>
+				<input type="radio" name="media" value="novel"><div id="radio-label">Novel</div></input>
+			</div>
+			</fieldset>
+			<a id="submit-button" href="home.html">Submit Quote</a>
+		</div>
+		
+		<footer>
+			&copy; 2016
+		</footer>
+		
+	</body>
+</html>
