@@ -35,9 +35,12 @@
 
 #submit-quote {
 	background-color: rgb(59, 89, 152);
+	display: block;
 	padding: 10px;
-	margin: 10px;
+	margin-left: 30px;
+	margin-top: 10px;
 	border: 2px solid darkgray;
 	border-radius: 5px;
 	color: white;
+	text-align: center;
 }

@@ -100,17 +100,17 @@ a {
 
 #left-column {
 	float: left;
-	width: 15%;
+	width: 17%;
 	min-width: 200px;
 }
 
 #game-button {
-	height: 95px;
-	background-color: rgb(59, 89, 152);
+	height: 100px;
+	background-color: inherit;
 	padding: 10px;
-	margin: 10px;
-	border: 2px solid darkgray;
-	border-radius: 5px;
+	margin-left: 10px;
+	float: left;
+	border-left: 2px solid rgb(23, 35, 61);
 }
 
 #filter-header	{
@@ -122,7 +122,8 @@ a {
 #filter-box {
 	background-color: white;
 	height: 310px;
-	margin: 10px;
+	margin-left: 30px;
+	margin-top: 50px;
 	padding: 10px;
 	border: 2px solid lightgray;
 	border-radius: 2px;
