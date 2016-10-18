@@ -105,10 +105,11 @@ a {
 }
 
 #game-button {
-	height: 100px;
+	height: 90px;
 	background-color: inherit;
 	padding: 10px;
 	margin-left: 10px;
+	margin-top: 5px;
 	float: left;
 	border-left: 2px solid rgb(23, 35, 61);
 }
