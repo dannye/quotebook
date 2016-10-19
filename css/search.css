@@ -55,6 +55,10 @@ tr {
 	margin-bottom: 30px;
 }
 
+#title-img {
+	width: 70%;
+}
+
 #per-page {
 	background-color: inherit;
 	float: left;
