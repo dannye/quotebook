@@ -24,6 +24,10 @@ footer {
 	margin-top: 30px;
 }
 
+body {
+	min-width: 1200px;
+}
+
 a {
 	text-decoration: none;
 	color: inherit;
