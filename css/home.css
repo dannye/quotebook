@@ -6,7 +6,7 @@
 	min-width: 400px;
 	font-size: 1.1rem;
 	margin-top: 10px;
-	margin-bottom: 30px;
+	margin-bottom: 20px;
 	padding: 10px;
 }
 
@@ -18,10 +18,10 @@
 	border-top: 2px solid lightgray;
 }
 
-.trending {
+#trending {
 	background-color: inherit;
 	overflow-y: scroll;
-	height: 75%;
+	height: 60%;
 }
 
 .trending-quote {
@@ -34,12 +34,13 @@
 }
 
 #submit-quote {
-	background-color: rgb(59, 89, 152);
+	background-color: rgb(66, 103, 178);
 	display: block;
-	padding: 10px;
-	margin-left: 30px;
-	margin-top: 10px;
-	border: 2px solid darkgray;
+	width: fit-content;
+	padding: 5px;
+	margin: auto;
+	margin-bottom: 20px;
+	border: 1px solid rgb(41, 72, 125);
 	border-radius: 5px;
 	color: white;
 	text-align: center;
