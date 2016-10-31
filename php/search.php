@@ -10,11 +10,11 @@
 	
 	<body>
 		<header>
-			<a href="home.html"><img alt="img" id="home-button" src="../images/home.png"/></a>
-			<a href="game.html"><img alt="img" id="game-button" src="../images/game.png"/></a>
+			<a href="home.php"><img alt="img" id="home-button" src="../images/home.png"/></a>
+			<a href="game.php"><img alt="img" id="game-button" src="../images/game.png"/></a>
 			<div class="ribbon">
 				<img alt="img" id="facebook-logo" src="../images/facebook.png" />
-				<a href="../index.html"><img alt="img" id="gear" src="../images/gear.png"/></a>
+				<a href="../index.php"><img alt="img" id="gear" src="../images/gear.png"/></a>
 				<div id="user">John Doe</div>
 			</div>
 		</header>
@@ -41,18 +41,24 @@
 		
 		<div id="page">
 			<input type="text" id="search" name="search" value="Run, Forrest, run" placeholder="Search Quotebook..."/>
-			<a href="search.html"><img alt="img" id="magnifying-glass" src="../images/magnifying_glass.png"/></a>
+			<a href="search.php"><img alt="img" id="magnifying-glass" src="../images/magnifying_glass.png"/></a>
 			<div id="results"><table>
-				<tr><th>Quote</th><th>Character</th><th><a href="search_actor.html">Actor</a></th><th><span id="asc">Title</span><span id="up-arrow">&#9650;</span><span id="down-arrow">&#9661;</span></th></tr>
-				<tr><td><div id="selected">I believe God made me for a purpose, but he also made me fast. And when I <b>run</b> I feel His pleasure.</div>
-					<img alt="like" class="fb-like" src="../images/facebook_like_thumb.png"/>
-					<img alt="share" class="fb-share" src="../images/facebook_share.png"/></td>
-					<td>Eric Liddell</td><td>Ian Charleson</td><td>Chariots of Fire<br><img alt="img" id="title-img" src="../images/chariots_of_fire.png" /></td>
-				</tr>
-				<tr><td>The chances of us...</td><td>Bunty</td><td>Imelda Staunton</td><td>Chicken <b>Run</b></td></tr>
-				<tr><td>I don't want to...</td><td>Babs</td><td>Jane Horrocks</td><td>Chicken <b>Run</b></td></tr>
-				<tr><td>Chickens go in...</td><td>Mr. Tweedy</td><td>Tony Haygarth</td><td>Chicken <b>Run</b></td></tr>
-				<tr><td>Do you ever dream...</td><td>Jenny Curran</td><td>Robin Wright</td><td><b>Forrest</b> Gump</td></tr>
+				<tr><th>Quote</th><th>Character</th><th><a href="search.php">Actor</a></th><th><span id="asc">Title</span><span id="up-arrow">&#9650;</span><span id="down-arrow">&#9661;</span></th></tr>
+				<?php
+				require_once('mysqli_connect.php');
+				$query = "SELECT * FROM quotes";
+				$response = mysqli_query($dbc, $query) or die(mysqli_error($dbc));
+				if ($response) {
+					$row = mysqli_fetch_array($response);
+					echo  '<tr><td><div id="selected">' . $row['quote'] . '</div>' .
+					'<img alt="like" class="fb-like" src="../images/facebook_like_thumb.png"/>' .
+					'<img alt="share" class="fb-share" src="../images/facebook_share.png"/></td>' .
+					'<td>' . $row['character'] . '</td>' .
+					'<td>' . $row['actor'] . '</td>' .
+					'<td>' . $row['title'] .
+					'<br><img alt="img" id="title-img" src="../images/forrest_gump.png" /></td>';
+				}
+				?>
 			</table></div>
 			<div id="per-page">Results per page: <span id="current-rpp">5</span> 10 20</div>
 			<div id="page-arrows"><span class="page-arrow">&lt;&lt;</span> <span class="page-arrow">&lt;</span>  1  <span class="page-arrow">&gt;</span> <span class="page-arrow">&gt;&gt;</span> </div>

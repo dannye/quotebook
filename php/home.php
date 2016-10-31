@@ -10,19 +10,19 @@
 	
 	<body>
 		<header>
-			<a href="home.html"><img alt="img" id="home-button" src="../images/home.png"/></a>
-			<a href="game.html"><img alt="img" id="game-button" src="../images/game.png"/></a>
+			<a href="home.php"><img alt="img" id="home-button" src="../images/home.png"/></a>
+			<a href="game.php"><img alt="img" id="game-button" src="../images/game.png"/></a>
 			<div class="ribbon">
 				<img alt="img" id="facebook-logo" src="../images/facebook.png" />
-				<a href="../index.html"><img alt="img" id="gear" src="../images/gear.png"/></a>
+				<a href="../index.php"><img alt="img" id="gear" src="../images/gear.png"/></a>
 				<div id="user">John Doe</div>
 			</div>
 		</header>
 		
 		<div id="page">
 			<input type="text" id="search" name="search" placeholder="Search Quotebook..."/>
-			<a href="search.html"><img alt="img" id="magnifying-glass" src="../images/magnifying_glass.png"/></a><br>
-			<a href="submit.html" id="submit-quote">Submit New Quote</a>
+			<a href="search.php"><img alt="img" id="magnifying-glass" src="../images/magnifying_glass.png"/></a><br>
+			<a href="submit.php" id="submit-quote">Submit New Quote</a>
 			<h2 id="trending-title">Trending</h2>
 			<div id="trending">
 				<div class="trending-quote">

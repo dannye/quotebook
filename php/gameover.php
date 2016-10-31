@@ -10,23 +10,25 @@
 	
 	<body>
 		<header>
-			<a href="home.html"><img alt="img" id="home-button" src="../images/home.png"/></a>
+			<a href="home.php"><img alt="img" id="home-button" src="../images/home.png"/></a>
 			<div class="ribbon">
 				<img alt="img" id="facebook-logo" src="../images/facebook.png" />
-				<a href="../index.html"><img alt="img" id="gear" src="../images/gear.png"/></a>
+				<a href="../index.php"><img alt="img" id="gear" src="../images/gear.png"/></a>
 				<div id="user">John Doe</div>
 			</div>
 		</header>
 		
 		<div id="page">
-			
-			<img alt="img" id="game-screen-pic" src="../images/quote.png"/>
-			<a href="question1.html" class="button" id="endless">ENDLESS</a>
-			<a href="" class="button" id="timed">TIMED</a>
-			<a href="" class="button" id="challenge">CHALLENGE A FRIEND</a>
-			
+			<img alt="img" id="gameover-screen-pic" src="../images/game_over.png"/>
+			<div id="game-buttons">
+				<a href="./question1.php" class="button" id="try-again">TRY AGAIN</a>
+				<a href="./game.php" class="button" id="main-menu">MAIN MENU</a>
+			</div>
+			<div class="score-display-div">
+				<b><em>SCORE: 0</em></b>
+			</div>
 		</div>
-
+		
 		<footer>
 			&copy; 2016
 		</footer>

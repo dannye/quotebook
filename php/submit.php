@@ -10,10 +10,10 @@
 	
 	<body>
 		<header>
-			<a href="home.html"><img alt="img" id="home-button" src="../images/home.png"/></a>
+			<a href="home.php"><img alt="img" id="home-button" src="../images/home.png"/></a>
 			<div class="ribbon">
 				<img alt="img" id="facebook-logo" src="../images/facebook.png" />
-				<a href="../index.html"><img alt="img" id="gear" src="../images/gear.png"/></a>
+				<a href="../index.php"><img alt="img" id="gear" src="../images/gear.png"/></a>
 				<div id="user">John Doe</div>
 			</div>
 		</header>
@@ -37,7 +37,7 @@
 				<input type="radio" name="media" value="novel"><div class="radio-label">Novel</div>
 			</div>
 			</fieldset>
-			<a id="submit-button" href="home.html">Submit Quote</a>
+			<a id="submit-button" href="home.php">Submit Quote</a>
 		</div>
 		
 		<footer>

@@ -10,10 +10,10 @@
 	
 	<body>
 		<header>
-			<a href="home.html"><img alt="img" id="home-button" src="../images/home.png"/></a>
+			<a href="home.php"><img alt="img" id="home-button" src="../images/home.png"/></a>
 			<div class="ribbon">
 				<img alt="img" id="facebook-logo" src="../images/facebook.png" />
-				<a href="../index.html"><img alt="img" id="gear" src="../images/gear.png"/></a>
+				<a href="../index.php"><img alt="img" id="gear" src="../images/gear.png"/></a>
 				<div id="user">John Doe</div>
 			</div>
 		</header>
@@ -26,7 +26,7 @@
 			<a href="" class="button" id="answer1">Jenny Curan</a>
 			<a href="" class="button" id="answer2">Forrest Gump</a>
 			<a href="" class="button" id="answer3">Spartacus</a>
-			<a href="./gameover.html" class="button" id="answer4">Mr. Rogers</a>
+			<a href="./gameover.php" class="button" id="answer4">Mr. Rogers</a>
 			<div class="score-display-div">
 				<b><em>SCORE: 0</em></b>
 			</div>

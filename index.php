@@ -10,12 +10,12 @@
 	
 	<body>
 		<header>
-			<a href="index.html"><img alt="img" id="home-button" src="images/home.png"/></a>
+			<a href="index.php"><img alt="img" id="home-button" src="images/home.png"/></a>
 			<img alt="img" id="game-button" src="images/game.png"/>
 			
 			<div class="ribbon">
 				<img alt="img" id="facebook-logo" src="images/facebook.png" />
-				<a id="login-link" href="html/login.html">Log In</a>
+				<a id="login-link" href="php/login.php">Log In</a>
 			</div>
 		</header>
 		
@@ -30,3 +30,4 @@
 		
 	</body>
 </html>
+

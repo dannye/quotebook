@@ -10,7 +10,7 @@
 	
 	<body>
 		<header>
-			<a href="../index.html"><img alt="img" id="home-button" src="../images/home.png"/></a>
+			<a href="../index.php"><img alt="img" id="home-button" src="../images/home.png"/></a>
 			<div class="ribbon">
 				<img alt="img" id="facebook-logo" src="../images/facebook.png" />
 			</div>
@@ -23,7 +23,7 @@
 			<br>
 			<input type="password" id="password" name="password" placeholder="password"/>
 			<br>
-			<a id="login-button" href="home.html">Log in</a>
+			<a id="login-button" href="home.php">Log in</a>
 			</fieldset>
 		</div>
 		
