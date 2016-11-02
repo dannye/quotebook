@@ -1,4 +1,9 @@
 <!DOCTYPE HTML>
+
+<?php
+	require_once('site.php');
+?>
+
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
@@ -9,14 +14,10 @@
 	</head>
 	
 	<body>
-		<header>
-			<a href="home.php"><img alt="img" id="home-button" src="../images/home.png"/></a>
-			<div class="ribbon">
-				<img alt="img" id="facebook-logo" src="../images/facebook.png" />
-				<a href="../index.php"><img alt="img" id="gear" src="../images/gear.png"/></a>
-				<div id="user">John Doe</div>
-			</div>
-		</header>
+		<?php
+			$username = "John Doe";
+			buildHeader(false, true, $username);
+		?>
 		
 		<div id="page">
 			<h2 id="submit-title">Submit Quote</h2>
