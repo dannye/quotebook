@@ -1,7 +1,19 @@
+<?php
+@session_start();
+?>
+
 <!DOCTYPE HTML>
 
 <?php
 	require_once('site.php');
+	
+	//if ($_SERVER["REQUEST_METHOD"] == "POST") {
+		if (isset($_POST['submit'])) {
+			if ($_POST['username'] != "") {
+				$_SESSION["username"] = $_POST['username'];
+			}
+		}
+	//}
 ?>
 
 <html lang="en">
@@ -15,8 +27,7 @@
 	
 	<body>
 		<?php
-			$username = "Log In";
-			buildHeader(true, false, $username);
+			buildHeader(true, true);
 		?>
 		
 		<div id="page">

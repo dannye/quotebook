@@ -1,3 +1,7 @@
+<?php
+@session_start();
+?>
+
 <!DOCTYPE HTML>
 
 <?php
@@ -15,8 +19,7 @@
 	
 	<body>
 		<?php
-			$username = "John Doe";
-			buildHeader(false, true, $username);
+			buildHeader(false, false);
 		?>
 		
 		<div id="page">

@@ -1,3 +1,7 @@
+<?php
+@session_start();
+?>
+
 <!DOCTYPE HTML>
 
 <?php
@@ -15,19 +19,28 @@
 	
 	<body>
 		<?php
-			$username = "";
-			buildHeader(false, false, $username);
+			buildHeader(false, false);
 		?>
+		
+		<script>
+			function validateForm() {
+				var x = document.forms["login-form"]["username"].value;
+				if (x == null || x == "") {
+					return false;
+				}
+				return true;
+			}
+		</script>
 		
 		<div id="page">
 			<img alt="img" id="wordmark" src="../images/facebook_wordmark.png"/>
-			<form action="home.php" method="post">
+			<form name="login-form" action="home.php" method="post" onsubmit="return validateForm()" id="login-form">
 			<fieldset>
 			<input type="text" id="username" name="username" placeholder="username"/>
 			<br>
 			<input type="password" id="password" name="password" placeholder="password"/>
 			<br>
-			<input type="submit" value="Log in" id="login-button">
+			<input type="submit" name="submit" value="Log in" id="login-button">
 			</fieldset>
 			</form>
 		</div>
