@@ -1,3 +1,6 @@
+<?php
+
+echo <<<_HD
 <!DOCTYPE HTML>
 <html lang="en">
 	<head>
@@ -33,3 +36,5 @@
 		
 	</body>
 </html>
+_HD;
+?>
