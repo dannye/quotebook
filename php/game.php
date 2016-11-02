@@ -1,7 +1,30 @@
+Skip to content
+This repository
+Search
+Pull requests
+Issues
+Gist
+ @adwoold
+ Watch 1
+  Star 0
+  Fork 0 dannye/quotebook
+ Code  Issues 0  Pull requests 0  Projects 0  Wiki  Pulse  Graphs
+Branch: master Find file Copy pathquotebook/php/game.php
+115b0ab  19 hours ago
+@dannye dannye Add log in functionality
+1 contributor
+RawBlameHistory     
+Executable File  40 lines (30 sloc)  744 Bytes
 <?php
+@session_start();
+?>
 
-echo <<<_HD
 <!DOCTYPE HTML>
+
+<?php
+	require_once('site.php');
+?>
+
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
@@ -12,14 +35,9 @@ echo <<<_HD
 	</head>
 	
 	<body>
-		<header>
-			<a href="home.php"><img alt="img" id="home-button" src="../images/home.png"/></a>
-			<div class="ribbon">
-				<img alt="img" id="facebook-logo" src="../images/facebook.png" />
-				<a href="../index.php"><img alt="img" id="gear" src="../images/gear.png"/></a>
-				<div id="user">John Doe</div>
-			</div>
-		</header>
+		<?php
+			buildHeader(false, false);
+		?>
 		
 		<div id="page">
 			
@@ -36,5 +54,5 @@ echo <<<_HD
 		
 	</body>
 </html>
-_HD;
-?>
+Contact GitHub API Training Shop Blog About
+© 2016 GitHub, Inc. Terms Privacy Security Status Help

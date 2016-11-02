@@ -1,7 +1,6 @@
 #submit-title {
 	color: rgb(59, 89, 152);
 	text-align: left;
-	background-color: inherit;
 	padding: 20px 50px;
 	border-bottom: 2px solid lightgray;
 }
@@ -9,22 +8,15 @@
 .submit-label {
 	color: rgb(59, 89, 152);
 	text-align: left;
-	background-color: inherit;
 	padding: 20px 50px;
 }
 
-#submit-form {
-	background-color: white;
-}
-
 #submit-fields {
-	background-color: inherit;
 	width: 45%;
 	float: left;
 }
 
 #submit-radio {
-	background-color: inherit;
 	float: right;
 	margin-top: 60px;
 	width: 35%;
@@ -48,7 +40,6 @@ input[type="radio"] {
 
 .radio-label {
 	float: left;
-	background-color: inherit;
 	margin-top: 10px;
 }
 

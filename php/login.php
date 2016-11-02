@@ -1,4 +1,13 @@
+<?php
+@session_start();
+?>
+
 <!DOCTYPE HTML>
+
+<?php
+	require_once('site.php');
+?>
+
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
@@ -9,22 +18,31 @@
 	</head>
 	
 	<body>
-		<header>
-			<a href="../index.php"><img alt="img" id="home-button" src="../images/home.png"/></a>
-			<div class="ribbon">
-				<img alt="img" id="facebook-logo" src="../images/facebook.png" />
-			</div>
-		</header>
+		<?php
+			buildHeader(false, false);
+		?>
+		
+		<script>
+			function validateForm() {
+				var x = document.forms["login-form"]["username"].value;
+				if (x == null || x == "") {
+					return false;
+				}
+				return true;
+			}
+		</script>
 		
 		<div id="page">
 			<img alt="img" id="wordmark" src="../images/facebook_wordmark.png"/>
+			<form name="login-form" action="home.php" method="post" onsubmit="return validateForm()" id="login-form">
 			<fieldset>
 			<input type="text" id="username" name="username" placeholder="username"/>
 			<br>
 			<input type="password" id="password" name="password" placeholder="password"/>
 			<br>
-			<a id="login-button" href="home.php">Log in</a>
+			<input type="submit" name="submit" value="Log in" id="login-button">
 			</fieldset>
+			</form>
 		</div>
 		
 		<footer>

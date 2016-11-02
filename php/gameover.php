@@ -1,4 +1,13 @@
+<?php
+@session_start();
+?>
+
 <!DOCTYPE HTML>
+
+<?php
+	require_once('site.php');
+?>
+
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
@@ -9,14 +18,9 @@
 	</head>
 	
 	<body>
-		<header>
-			<a href="home.php"><img alt="img" id="home-button" src="../images/home.png"/></a>
-			<div class="ribbon">
-				<img alt="img" id="facebook-logo" src="../images/facebook.png" />
-				<a href="../index.php"><img alt="img" id="gear" src="../images/gear.png"/></a>
-				<div id="user">John Doe</div>
-			</div>
-		</header>
+		<?php
+			buildHeader(false, false);
+		?>
 		
 		<div id="page">
 			<img alt="img" id="gameover-screen-pic" src="../images/game_over.png"/>
