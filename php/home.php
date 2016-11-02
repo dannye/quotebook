@@ -32,7 +32,7 @@
 		<div id="page">
 			<form action="search.php" method="GET">
 			<input type="text" id="search" name="search" placeholder="Search Quotebook..."/>
-			<input type="submit" name="submit" id="magnifying-glass" value=""><br>
+			<input type="submit" id="magnifying-glass" value=""><br>
 			</form>
 			<a href="submit.php" id="submit-quote">Submit New Quote</a>
 			<h2 id="trending-title">Trending</h2>

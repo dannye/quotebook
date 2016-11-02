@@ -42,15 +42,75 @@
 		</div>
 		
 		<div id="page">
+			<script>
+				function sortByColumn() {
+					var element = document.getElementById("page");
+					var child = document.getElementById("old-sort");
+					if (child != null) {
+						element.removeChild(child);
+					}
+				}
+			</script>
 			<input type="text" id="search" name="search" value="<?php echo empty($_GET['search']) ? '' : $_GET['search']; ?>" placeholder="Search Quotebook..."/>
-            <input type="submit" name="submit" id="magnifying-glass" value="">
-			<div id="results"><table>
-				<tr><th>Quote</th><th>Character</th><th><a href="search.php">Actor</a></th><th><span id="asc">Title</span><span id="up-arrow">&#9650;</span><span id="down-arrow">&#9661;</span></th></tr>
-				<?php
+            <input type="submit" id="magnifying-glass" value="">
+			<?php
+				$sort = "title";
+				if (isset($_GET['sort'])) {
+					if ($_GET['sort'] != "") {
+						$sort = $_GET['sort'];
+						echo '<input type="hidden" name="sort" value="' . $sort . '" id="old-sort">';
+					}
+				}
+				echo '<div id="results"><table><tr>';
+				
+				echo '<th>';
+				if ($sort == "quote") {
+					echo '<span id="asc">';
+				}
+				echo '<button type="submit" name="sort" value="quote" onclick="sortByColumn();" id="quote-sort">Quote</button>';
+				if ($sort == "quote") {
+					echo '</span><span id="up-arrow">&#9650;</span><span id="down-arrow">&#9661;</span>';
+				}
+				echo '</th>';
+				
+				
+				echo '<th>';
+				if ($sort == "character") {
+					echo '<span id="asc">';
+				}
+				echo '<button type="submit" name="sort" value="character" onclick="sortByColumn();" id="character-sort">Character</button>';
+				if ($sort == "character") {
+					echo '</span><span id="up-arrow">&#9650;</span><span id="down-arrow">&#9661;</span>';
+				}
+				echo '</th>';
+				
+				
+				echo '<th>';
+				if ($sort == "actor") {
+					echo '<span id="asc">';
+				}
+				echo '<button type="submit" name="sort" value="actor" onclick="sortByColumn();" id="actor-sort">Actor</button>';
+				if ($sort == "actor") {
+					echo '</span><span id="up-arrow">&#9650;</span><span id="down-arrow">&#9661;</span>';
+				}
+				echo '</th>';
+				
+				
+				echo '<th>';
+				if ($sort == "title") {
+					echo '<span id="asc">';
+				}
+				echo '<button type="submit" name="sort" value="title" onclick="sortByColumn();" id="title-sort">Title</button>';
+				if ($sort == "title") {
+					echo '</span><span id="up-arrow">&#9650;</span><span id="down-arrow">&#9661;</span>';
+				}
+				echo '</th>';
+				
+				echo '</tr>';
 				require_once('mysqli_connect.php');
 				$query = "SELECT * FROM `quotes`";
 				if ($_SERVER["REQUEST_METHOD"] == "GET") {
-					if (isset($_GET['submit'])) {
+					if (isset($_GET['search'])) {
 						$search = $_GET['search'];
 						$movie = "";
 						$tv = "";
@@ -63,6 +123,11 @@
 						}
 						if (isset($_GET['novel-check'])) {
 							$novel = $_GET['novel-check'];
+						}
+						if ($movie == 'on' && $tv == 'on' && $novel == 'on') {
+							$movie = "";
+							$tv = "";
+							$novel = "";
 						}
 						$character = "";
 						$actor = "";
@@ -130,7 +195,7 @@
 						//echo $query;
 					}
 				}
-				$query = $query . "ORDER BY `title`";
+				$query = $query . "ORDER BY `$sort` LIMIT 5";
 				$response = mysqli_query($dbc, $query) or die(mysqli_error($dbc));
 				if ($response) {
 					$row = mysqli_fetch_array($response);

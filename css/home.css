@@ -10,20 +10,14 @@
 	padding: 10px;
 }
 
-form {
-	background-color: inherit;
-}
-
 #trending-title {
 	color: rgb(59, 89, 152);
 	text-align: left;
-	background-color: inherit;
 	padding: 20px 50px;
 	border-top: 2px solid lightgray;
 }
 
 #trending {
-	background-color: inherit;
 	overflow-y: scroll;
 	height: 60%;
 }
@@ -35,12 +29,13 @@ form {
 	border-radius: 2px;
 	margin: 20px auto;
 	padding: 2rem;
+	background-color: rgb(233, 235, 238);
 }
 
 #submit-quote {
 	background-color: rgb(66, 103, 178);
 	display: block;
-	width: fit-content;
+	width: max-content;
 	padding: 5px;
 	margin: auto;
 	margin-bottom: 20px;

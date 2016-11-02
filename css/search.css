@@ -20,12 +20,11 @@
 }
 
 table {
-	background-color: inherit;
+	background-color: rgb(233, 235, 238);
 	width: 100%;
 }
 
 th, td {
-	background-color: inherit;
 	padding: 10px;
 	font-size: 1.2rem;
 	border-left: 1px solid white;
@@ -34,6 +33,11 @@ th, td {
 
 tr {
 	outline: 2px solid gray;
+}
+
+th button {
+	font-size: 1.2rem;
+	cursor: pointer;
 }
 
 #asc, #desc {
@@ -61,7 +65,6 @@ tr {
 }
 
 #per-page {
-	background-color: inherit;
 	float: left;
 	font-size: 1.2rem;
 	margin-left: 50px;
@@ -70,12 +73,10 @@ tr {
 }
 
 #current-rpp {
-	background-color: inherit;
 	text-decoration: underline;
 }
 
 #page-arrows {
-	background-color: inherit;
 	float: right;
 	font-size: 1.2rem;
 	position: absolute;
@@ -88,4 +89,5 @@ tr {
 	border: 1px solid gray;
 	border-radius: 3px;
 	padding: 3px;
+	background-color: rgb(233, 235, 238);
 }
