@@ -180,10 +180,17 @@ a {
 	width: 20px;
 	float: right;
 	margin: 5px;
+	position: absolute;
+	bottom: 0;
+	right: 0;
 }
 
 .fb-share {
 	height: 30px;
 	width: 70px;
 	float: right;
+	position: absolute;
+	bottom: 0;
+	right: 30px;
+	padding: 2px;
 }
