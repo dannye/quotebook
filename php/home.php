@@ -37,18 +37,21 @@
 			<a href="submit.php" id="submit-quote">Submit New Quote</a>
 			<h2 id="trending-title">Trending</h2>
 			<div id="trending">
-				<div class="trending-quote">
-					Movie: Shrek (2001)<br><br>
-					"This is gonna be fun. We can stay up late, swappin' manly stories, and in the mornin', I'm makin' waffles!" - Donkey (Eddie Murphy)<br><br>
-					<img alt="like" class="fb-like" src="../images/facebook_like_thumb.png"/>
+				<?php
+				require_once('mysqli_connect.php');
+				$query = "SELECT * FROM quotes ORDER BY RAND() LIMIT 2";
+				$response = mysqli_query($dbc, $query) or die(mysqli_error($dbc));
+				$num_rows = $response->num_rows;
+				while($row = $response->fetch_array())
+				{
+					echo '<div class="trending-quote">' . 
+					$row['title'] . '<br><br>' . 
+					$row['quote'] . '<br>' . 
+					'<img alt="like" class="fb-like" src="../images/facebook_like_thumb.png"/>
 					<img alt="share" class="fb-share" src="../images/facebook_share.png"/>
-				</div>
-				<div class="trending-quote">
-					Novel: Frankenstein; or, the Modern Prometheus (1818)<br><br>
-					"Nothing is so painful to the human mind as a great and sudden change." - Victor Frankenstein<br><br>
-					<img alt="like" class="fb-like" src="../images/facebook_like_thumb.png"/>
-					<img alt="share" class="fb-share" src="../images/facebook_share.png"/>
-				</div>
+					</div>';
+				}
+				?>
 			</div>
 		</div>
 		

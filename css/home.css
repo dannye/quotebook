@@ -30,6 +30,7 @@
 	margin: 20px auto;
 	padding: 2rem;
 	background-color: rgb(233, 235, 238);
+	position: relative;
 }
 
 #submit-quote {
