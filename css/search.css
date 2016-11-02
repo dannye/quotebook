@@ -40,7 +40,7 @@ th button {
 	cursor: pointer;
 }
 
-#asc, #desc {
+#asc button, #desc button {
 	text-decoration: underline;
 }
 
