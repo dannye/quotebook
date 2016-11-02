@@ -22,6 +22,7 @@
 			buildHeader(true, true);
 		?>
 		
+		<form action="search.php" method="GET">
 		<div id="left-column">
 			<div id="filter-box">
 				<h4 id="filter-header">Search Filters</h4>
@@ -43,13 +44,22 @@
 		</div>
 		
 		<div id="page">
-			<input type="text" id="search" name="search" value="Run, Forrest, run" placeholder="Search Quotebook..."/>
-			<a href="search.php"><img alt="img" id="magnifying-glass" src="../images/magnifying_glass.png"/></a>
+			<input type="text" id="search" name="search" value="" placeholder="Search Quotebook..."/>
+            <input type="submit" name="submit" id="magnifying-glass" value="">
 			<div id="results"><table>
 				<tr><th>Quote</th><th>Character</th><th><a href="search.php">Actor</a></th><th><span id="asc">Title</span><span id="up-arrow">&#9650;</span><span id="down-arrow">&#9661;</span></th></tr>
 				<?php
 				require_once('mysqli_connect.php');
-				$query = "SELECT * FROM quotes LIMIT 5";
+				$query = "SELECT * FROM `quotes`";
+				if ($_SERVER["REQUEST_METHOD"] == "GET") {
+					if (isset($_GET['submit'])) {
+						$search = $_GET['search'];
+						if ($search != "") {
+							$query = $query . " WHERE (`quote` LIKE '%$search%') OR (`character` LIKE '%$search%') OR (`actor` LIKE '%$search%') OR (`title` LIKE '%$search%')";
+						}
+					}
+				}
+				$query = $query . "ORDER BY `title`";
 				$response = mysqli_query($dbc, $query) or die(mysqli_error($dbc));
 				if ($response) {
 					$row = mysqli_fetch_array($response);
@@ -74,6 +84,7 @@
 			<div id="per-page">Results per page: <span id="current-rpp">5</span> 10 20</div>
 			<div id="page-arrows"><span class="page-arrow">&lt;&lt;</span> <span class="page-arrow">&lt;</span>  1  <span class="page-arrow">&gt;</span> <span class="page-arrow">&gt;&gt;</span> </div>
 		</div>
+		</form>
 		
 		<footer>
 			&copy; 2016

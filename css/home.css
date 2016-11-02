@@ -10,6 +10,10 @@
 	padding: 10px;
 }
 
+form {
+	background-color: inherit;
+}
+
 #trending-title {
 	color: rgb(59, 89, 152);
 	text-align: left;

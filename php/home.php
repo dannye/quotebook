@@ -29,10 +29,11 @@
 		<?php
 			buildHeader(true, true);
 		?>
-		
 		<div id="page">
+			<form action="search.php" method="GET">
 			<input type="text" id="search" name="search" placeholder="Search Quotebook..."/>
-			<a href="search.php"><img alt="img" id="magnifying-glass" src="../images/magnifying_glass.png"/></a><br>
+			<input type="submit" name="submit" id="magnifying-glass" value=""><br>
+			</form>
 			<a href="submit.php" id="submit-quote">Submit New Quote</a>
 			<h2 id="trending-title">Trending</h2>
 			<div id="trending">

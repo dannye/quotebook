@@ -136,14 +136,19 @@ a {
 
 #magnifying-glass {
 	height: 46px;
+	width: 46px;
 	padding: 5px;
 	position: relative;
-	top: 16px;
+	top: 10px;
 	left: -5px;
 	background-color: rgb(233, 235, 238);
 	border-top: 1px solid gray;
 	border-right: 1px solid gray;
 	border-bottom: 1px solid gray;
+	background-image: url(../images/magnifying_glass.png);
+	background-size: 90%;
+	background-repeat: no-repeat;
+	background-position: center;
 }
 
 .filter-check {
