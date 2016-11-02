@@ -6,6 +6,40 @@
 
 <?php
 	require_once('site.php');
+	require_once('mysqli_connect.php');
+	$affected = -1;
+	if ($_SERVER["REQUEST_METHOD"] == "POST") {
+		if (isset($_POST['submit'])) {
+			if ($_POST['quote'] != "") {
+				$quote = $_POST['quote'];
+			}
+			if ($_POST['character'] != "") {
+				$character = $_POST['character'];
+			}
+			if ($_POST['actor'] != "") {
+				$actor = $_POST['actor'];
+			}
+			if ($_POST['title'] != "") {
+				$title = $_POST['title'];
+			}
+			if ($_POST['image'] != "") {
+				$image = $_POST['image'];
+			}
+			if ($_POST['media'] != "") {
+				$media = $_POST['media'];
+			}
+			
+			if ($quote != "") {
+				$query = "INSERT INTO quotes VALUES (DEFAULT,?,?,?,?,?,?)";
+				$stmt = mysqli_prepare($dbc, $query);
+				mysqli_stmt_bind_param($stmt, "ssssss", $quote, $character, $actor, $title, $image, $media);
+				mysqli_stmt_execute($stmt);
+				$affected = mysqli_stmt_affected_rows($stmt);
+				mysqli_stmt_close($stmt);
+				mysqli_close($dbc);
+			}
+		}
+	}
 ?>
 
 <html lang="en">
@@ -22,9 +56,28 @@
 			buildHeader(false, false);
 		?>
 		
+		<script>
+			function validateSubmitForm() {
+				var quote = document.forms["submit-form"]["quote"].value;
+				if (quote == null || quote == "") {
+					return false;
+				}
+				var character = document.forms["submit-form"]["character"].value;
+				if (character == null || character == "") {
+					return false;
+				}
+				var title = document.forms["submit-form"]["title"].value;
+				if (title == null || title == "") {
+					return false;
+				}
+				return true;
+			}
+		</script>
+		
 		<div id="page">
 			<h2 id="submit-title">Submit Quote</h2>
-			<fieldset id="submit-form">
+			<form name="submit-form" action="submit.php" method="post" onsubmit="return validateSubmitForm()" id="submit-form">
+			<fieldset id="submit-fieldset">
 			<div id="submit-fields">
 				<h4 class="submit-label">Quote:</h4>
 				<input type="text" id="quote" name="quote" placeholder=""/><br>
@@ -33,7 +86,9 @@
 				<h4 class="submit-label">Actor:</h4>
 				<input type="text" id="actor" name="actor" placeholder=""/><br>
 				<h4 class="submit-label">Title:</h4>
-				<input type="text" id="title" name="title" placeholder=""/><br><br>
+				<input type="text" id="title" name="title" placeholder=""/><br>
+				<h4 class="submit-label">Image:</h4>
+				<input type="text" id="image" name="image" placeholder=""/><br><br>
 			</div>
 			<div id="submit-radio">
 				<input type="radio" name="media" value="movie" checked><div class="radio-label">Movie</div><br><br>
@@ -41,7 +96,16 @@
 				<input type="radio" name="media" value="novel"><div class="radio-label">Novel</div>
 			</div>
 			</fieldset>
-			<a id="submit-button" href="home.php">Submit Quote</a>
+			<input type="submit" name="submit" value="Submit Quote" id="submit-button">
+			<?php
+				if ($affected == 1) {
+					echo 'Quote added!';
+				}
+				elseif ($affected == 0) {
+					echo 'Please double check input.';
+				}
+			?>
+			</form>
 		</div>
 		
 		<footer>

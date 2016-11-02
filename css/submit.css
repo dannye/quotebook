@@ -13,7 +13,8 @@
 	padding: 20px 50px;
 }
 
-#submit-form {
+#submit-form,
+#submit-fieldset {
 	background-color: white;
 }
 

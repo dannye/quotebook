@@ -7,13 +7,13 @@
 <?php
 	require_once('site.php');
 	
-	//if ($_SERVER["REQUEST_METHOD"] == "POST") {
+	if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		if (isset($_POST['submit'])) {
 			if ($_POST['username'] != "") {
 				$_SESSION["username"] = $_POST['username'];
 			}
 		}
-	//}
+	}
 ?>
 
 <html lang="en">

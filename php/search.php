@@ -49,7 +49,7 @@
 				<tr><th>Quote</th><th>Character</th><th><a href="search.php">Actor</a></th><th><span id="asc">Title</span><span id="up-arrow">&#9650;</span><span id="down-arrow">&#9661;</span></th></tr>
 				<?php
 				require_once('mysqli_connect.php');
-				$query = "SELECT * FROM quotes";
+				$query = "SELECT * FROM quotes LIMIT 5";
 				$response = mysqli_query($dbc, $query) or die(mysqli_error($dbc));
 				if ($response) {
 					$row = mysqli_fetch_array($response);
@@ -60,7 +60,15 @@
 					'<td>' . $row['actor'] . '</td>' .
 					'<td>' . $row['title'] .
 					'<br><img alt="img" id="title-img" src="' . $row['image'] . '" /></td>';
+					while ($row = mysqli_fetch_array($response)) {
+						echo  '<tr><td><div>' . $row['quote'] . '</div>' .
+						'<td>' . $row['character'] . '</td>' .
+						'<td>' . $row['actor'] . '</td>' .
+						'<td>' . $row['title'] .
+						'<br><img alt="img" id="title-img" src="' . $row['image'] . '" /></td>';
+					}
 				}
+				mysqli_close($dbc);
 				?>
 			</table></div>
 			<div id="per-page">Results per page: <span id="current-rpp">5</span> 10 20</div>
