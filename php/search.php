@@ -50,61 +50,60 @@
 						element.removeChild(child);
 					}
 				}
+				
+				function sortAscDesc() {
+					var element = document.getElementById("page");
+					var child = document.getElementById("old-order");
+					if (child != null) {
+						element.removeChild(child);
+					}
+				}
 			</script>
 			<input type="text" id="search" name="search" value="<?php echo empty($_GET['search']) ? '' : $_GET['search']; ?>" placeholder="Search Quotebook..."/>
             <input type="submit" id="magnifying-glass" value="">
+			<input type="hidden" name="sort" value="<?php echo empty($_GET['sort']) ? 'title' : $_GET['sort']; ?>" id="old-sort">
+			<input type="hidden" name="order" value="<?php echo empty($_GET['order']) ? 'asc' : $_GET['order']; ?>" id="old-order">
 			<?php
+				function addHeader($name, $sort, $order) {
+					echo '<th>';
+					if ($sort == strtolower($name)) {
+						echo "<span id='$order'>";
+					}
+					echo '<button type="submit" name="sort" value="' . strtolower($name) . '" onclick="sortByColumn();" id="' . strtolower($name) . '-sort">' . $name . '</button>';
+					if ($sort == strtolower($name)) {
+						echo '</span>';
+					}
+					if ($sort == strtolower($name)) {
+						if ($order == "asc") {
+							echo '<span id="up-arrow"><button type="submit" name="order" value="asc" onclick="sortAscDesc();">&#9650;</button></span><span id="down-arrow"><button type="submit" name="order" value="desc" onclick="sortAscDesc();">&#9663;</button></span>';
+						}
+						else {
+							echo '<span id="up-arrow"><button type="submit" name="order" value="asc" onclick="sortAscDesc();">&#9653;</button></span><span id="down-arrow"><button type="submit" name="order" value="desc" onclick="sortAscDesc();">&#9660;</button></span>';
+						}
+					}
+					echo '</th>';
+				}
+				
 				$sort = "title";
 				if (isset($_GET['sort'])) {
-					if ($_GET['sort'] != "") {
+					if ($_GET['sort'] == "quote" || $_GET['sort'] == "character" || $_GET['sort'] == "actor" || $_GET['sort'] == "title") {
 						$sort = $_GET['sort'];
-						echo '<input type="hidden" name="sort" value="' . $sort . '" id="old-sort">';
+						//echo '<input type="hidden" name="sort" value="' . $sort . '" id="old-sort">';
 					}
 				}
+				$order = "asc";
+				if (isset($_GET['order'])) {
+					if ($_GET['order'] == "asc" || $_GET['order'] == "desc") {
+						$order = $_GET['order'];
+					}
+				}
+				
 				echo '<div id="results"><table><tr>';
 				
-				echo '<th>';
-				if ($sort == "quote") {
-					echo '<span id="asc">';
-				}
-				echo '<button type="submit" name="sort" value="quote" onclick="sortByColumn();" id="quote-sort">Quote</button>';
-				if ($sort == "quote") {
-					echo '</span><span id="up-arrow">&#9650;</span><span id="down-arrow">&#9661;</span>';
-				}
-				echo '</th>';
-				
-				
-				echo '<th>';
-				if ($sort == "character") {
-					echo '<span id="asc">';
-				}
-				echo '<button type="submit" name="sort" value="character" onclick="sortByColumn();" id="character-sort">Character</button>';
-				if ($sort == "character") {
-					echo '</span><span id="up-arrow">&#9650;</span><span id="down-arrow">&#9661;</span>';
-				}
-				echo '</th>';
-				
-				
-				echo '<th>';
-				if ($sort == "actor") {
-					echo '<span id="asc">';
-				}
-				echo '<button type="submit" name="sort" value="actor" onclick="sortByColumn();" id="actor-sort">Actor</button>';
-				if ($sort == "actor") {
-					echo '</span><span id="up-arrow">&#9650;</span><span id="down-arrow">&#9661;</span>';
-				}
-				echo '</th>';
-				
-				
-				echo '<th>';
-				if ($sort == "title") {
-					echo '<span id="asc">';
-				}
-				echo '<button type="submit" name="sort" value="title" onclick="sortByColumn();" id="title-sort">Title</button>';
-				if ($sort == "title") {
-					echo '</span><span id="up-arrow">&#9650;</span><span id="down-arrow">&#9661;</span>';
-				}
-				echo '</th>';
+				addHeader("Quote", $sort, $order);
+				addHeader("Character", $sort, $order);
+				addHeader("Actor", $sort, $order);
+				addHeader("Title", $sort, $order);
 				
 				echo '</tr>';
 				require_once('mysqli_connect.php');
@@ -195,7 +194,7 @@
 						//echo $query;
 					}
 				}
-				$query = $query . "ORDER BY `$sort` LIMIT 5";
+				$query = $query . "ORDER BY `$sort` $order LIMIT 5";
 				$response = mysqli_query($dbc, $query) or die(mysqli_error($dbc));
 				if ($response) {
 					$row = mysqli_fetch_array($response);

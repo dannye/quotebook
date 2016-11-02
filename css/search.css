@@ -25,7 +25,7 @@ table {
 }
 
 th, td {
-	padding: 10px;
+	padding: 15px;
 	font-size: 1.2rem;
 	border-left: 1px solid white;
 	width: 25%;
@@ -40,7 +40,7 @@ th button {
 	cursor: pointer;
 }
 
-#asc button, #desc button {
+span#asc button, span#desc button {
 	text-decoration: underline;
 }
 
@@ -52,8 +52,8 @@ th button {
 
 #down-arrow {
 	position: relative;
-	top: 10px;
-	left: -11px;
+	top: 11px;
+	left: -10px;
 }
 
 #selected {
