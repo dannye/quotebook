@@ -28,6 +28,8 @@ CREATE TABLE `quotes` (
   `character` varchar(50) DEFAULT NULL,
   `actor` varchar(50) DEFAULT NULL,
   `title` varchar(50) DEFAULT NULL,
+  `image` varchar(50) DEFAULT NULL,
+  `medium` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -38,7 +40,7 @@ CREATE TABLE `quotes` (
 
 LOCK TABLES `quotes` WRITE;
 /*!40000 ALTER TABLE `quotes` DISABLE KEYS */;
-INSERT INTO `quotes` VALUES (1,'Run, Forrest! Run!','Jenny Curran','Robin Wright','Forrest Gump');
+INSERT INTO `quotes` VALUES (1,'Run, Forrest! Run!','Jenny Curran','Robin Wright','Forrest Gump','../images/forrest_gump.png','movie');
 /*!40000 ALTER TABLE `quotes` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-10-30 23:28:57
+-- Dump completed on 2016-11-01 20:43:01

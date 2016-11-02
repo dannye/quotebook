@@ -56,7 +56,7 @@
 					'<td>' . $row['character'] . '</td>' .
 					'<td>' . $row['actor'] . '</td>' .
 					'<td>' . $row['title'] .
-					'<br><img alt="img" id="title-img" src="../images/forrest_gump.png" /></td>';
+					'<br><img alt="img" id="title-img" src="' . $row['image'] . '" /></td>';
 				}
 				?>
 			</table></div>
