@@ -26,18 +26,18 @@
 		<div id="left-column">
 			<div id="filter-box">
 				<h4 id="filter-header">Search Filters</h4>
-				<div class="filter-label">Movie
+				<div class="filter-label">Movies
 				<input type="checkbox" name="movie-check" class="filter-check" <?php echo empty($_GET['movie-check']) ? '' : ' checked="checked" '; ?> /></div>
-				<div class="filter-label">TV Show
+				<div class="filter-label">TV Shows
 				<input type="checkbox" name="tv-check" class="filter-check" <?php echo empty($_GET['tv-check']) ? '' : ' checked="checked" '; ?> /></div>
-				<div class="filter-label">Novel
+				<div class="filter-label">Novels
 				<input type="checkbox" name="novel-check" class="filter-check" <?php echo empty($_GET['novel-check']) ? '' : ' checked="checked" '; ?> /></div>
 				<div class="filter-label">Character</div>
-				<input type="text" name="character-search" class="filter-text" value="<?php echo empty($_GET['character-search']) ? '' : $_GET['character-search']; ?>" >
-				<div class="filter-label">Actor</div>
-				<input type="text" name="actor-search" class="filter-text" value="<?php echo empty($_GET['actor-search']) ? '' : $_GET['actor-search']; ?>" >
+				<input type="text" name="character-search" id="character-text" class="filter-text" value="<?php echo empty($_GET['character-search']) ? '' : $_GET['character-search']; ?>" >
+				<div class="filter-label">Actor/Author</div>
+				<input type="text" name="actor-search" id="actor-text" class="filter-text" value="<?php echo empty($_GET['actor-search']) ? '' : $_GET['actor-search']; ?>" >
 				<div class="filter-label">Title</div>
-				<input type="text" name="title-search" class="filter-text" value="<?php echo empty($_GET['title-search']) ? '' : $_GET['title-search']; ?>" >
+				<input type="text" name="title-search" id="title-text" class="filter-text" value="<?php echo empty($_GET['title-search']) ? '' : $_GET['title-search']; ?>" >
 			</div>
 		</div>
 		
@@ -49,6 +49,8 @@
 					if (child != null) {
 						element.removeChild(child);
 					}
+					var page = document.getElementById("old-page");
+					page.value = "1";
 				}
 				
 				function sortAscDesc() {
@@ -57,11 +59,23 @@
 					if (child != null) {
 						element.removeChild(child);
 					}
+					var page = document.getElementById("old-page");
+					page.value = "1";
 				}
 				
 				function selectedResultsPerPage() {
 					var element = document.getElementById("page");
 					var child = document.getElementById("old-rpp");
+					if (child != null) {
+						element.removeChild(child);
+					}
+					var page = document.getElementById("old-page");
+					page.value = "1";
+				}
+				
+				function selectedPageButton() {
+					var element = document.getElementById("page");
+					var child = document.getElementById("old-page");
 					if (child != null) {
 						element.removeChild(child);
 					}
@@ -71,9 +85,7 @@
 					var index = parseInt(value);
 					var table = document.getElementById("results-table");
 					if (table.rows.length > 0) {
-						console.log(table.rows.length);
 						var selected = table.rows[index + 1].cells[0];
-						console.log(index + 1);
 						selected.firstChild.className = "";
 						selected.children[1].className = "hidden";
 						for (var i = 1; i < table.rows.length; i++) {
@@ -85,12 +97,26 @@
 						}
 					}
 				}
+				
+				function clickedCell(cell, columnID) {
+					var column = document.getElementById(columnID);
+					var characterColumn = document.getElementById('character-text');
+					var actorColumn = document.getElementById('actor-text');
+					var titleColumn = document.getElementById('title-text');
+					characterColumn.value = "";
+					actorColumn.value = "";
+					titleColumn.value = "";
+					column.value = cell.innerHTML;
+					var page = document.getElementById("old-page");
+					page.value = "1";
+				}
 			</script>
 			<input type="text" id="search" name="search" value="<?php echo empty($_GET['search']) ? '' : $_GET['search']; ?>" placeholder="Search Quotebook..."/>
             <input type="submit" id="magnifying-glass" value="">
 			<input type="hidden" name="sort" value="<?php echo empty($_GET['sort']) ? 'title' : $_GET['sort']; ?>" id="old-sort">
 			<input type="hidden" name="order" value="<?php echo empty($_GET['order']) ? 'asc' : $_GET['order']; ?>" id="old-order">
 			<input type="hidden" name="rpp" value="<?php echo empty($_GET['rpp']) ? '5' : $_GET['rpp']; ?>" id="old-rpp">
+			<input type="hidden" name="page" value="<?php echo empty($_GET['page']) ? '1' : $_GET['page']; ?>" id="old-page">
 			<?php
 				function addHeader($name, $sort, $order) {
 					echo '<th>';
@@ -130,6 +156,12 @@
 						$rpp = $_GET['rpp'];
 					}
 				}
+				$page = "1";
+				if (isset($_GET['page'])) {
+					if (is_numeric($_GET['page'])) {
+						$page = $_GET['page'];
+					}
+				}
 				
 				echo '<div id="results"><table id="results-table"><tr>';
 				
@@ -140,7 +172,7 @@
 				
 				echo '</tr>';
 				require_once('mysqli_connect.php');
-				$query = "SELECT * FROM `quotes`";
+				$query = " FROM `quotes`";
 				if ($_SERVER["REQUEST_METHOD"] == "GET") {
 					if (isset($_GET['search'])) {
 						$search = $_GET['search'];
@@ -227,29 +259,47 @@
 						//echo $query;
 					}
 				}
-				$query = $query . "ORDER BY `$sort` $order LIMIT $rpp";
+				$countQuery = "SELECT `quote`, `character`, `actor`, `title`, `medium`, `image`, COUNT(*) " .
+					$query . " GROUP BY `quote`, `character`, `actor`, `title`, `medium`, `image`";
+				$response = mysqli_query($dbc, $countQuery) or die(mysqli_error($dbc));
+				$numResults = mysqli_affected_rows($dbc);
+				$query = "SELECT * " . $query . " ORDER BY `$sort` $order";
 				$response = mysqli_query($dbc, $query) or die(mysqli_error($dbc));
+				$numPages = ceil($numResults / $rpp);
+				$start = 1 + ($page - 1) * $rpp;
+				if ($start > $numResults) {
+					$start = $numResults;
+				}
+				$end = $page * $rpp;
+				if ($end > $numResults) {
+					$end = $numResults;
+				}
 				$count = 0;
 				if ($response) {
-					while ($row = mysqli_fetch_array($response)) {
+					while ($count < $start - 1) {
+						$row = mysqli_fetch_array($response);
+						$count += 1;
+					}
+					while ($count < $end) {
+						$row = mysqli_fetch_array($response);
 						echo  '<tr><td>';
 						if ($count == 0) {
-							echo '<div class=""><div id="selected">' . $row['quote'] . '</div>' .
+							echo '<div class=""><div class="selected">' . $row['quote'] . '</div>' .
 							'<img alt="like" class="fb-like" src="../images/facebook_like_thumb.png"/>' .
 							'<img alt="share" class="fb-share" src="../images/facebook_share.png"/></div>';
-							echo '<div class="hidden"><button type="button" name="selected" value="' . $count . '" onclick="selectedQuote(this.value);">' . $row['quote'] . '</button></div>';
+							echo '<div class="hidden"><button class="quote-button" type="button" name="selected" value="' . $count . '" onclick="selectedQuote(this.value);">' . $row['quote'] . '</button></div>';
 }
 						else {
-							echo '<div class="hidden"><div id="selected">' . $row['quote'] . '</div>' .
+							echo '<div class="hidden"><div class="selected">' . $row['quote'] . '</div>' .
 							'<img alt="like" class="fb-like" src="../images/facebook_like_thumb.png"/>' .
 							'<img alt="share" class="fb-share" src="../images/facebook_share.png"/></div>';
-							echo '<div class=""><button type="button" name="selected" value="' . $count . '" onclick="selectedQuote(this.value);">' . $row['quote'] . '</button><div>';
+							echo '<div class=""><button class="quote-button" type="button" name="selected" value="' . $count . '" onclick="selectedQuote(this.value);">' . $row['quote'] . '</button><div>';
 						}
 						echo '</td>' .
-						'<td>' . $row['character'] . '</td>' .
-						'<td>' . $row['actor'] . '</td>' .
-						'<td>' . $row['title'] .
-						'<br><img alt="img" id="title-img" src="' . $row['image'] . '" /></td></tr>';
+						'<td><button type="submit" class="cell-button" onclick="clickedCell(this, ' . "'character-text'" . ');">' . $row['character'] . '</button></td>' .
+						'<td><button type="submit" class="cell-button" onclick="clickedCell(this, ' . "'actor-text'" . ');">' . $row['actor'] . '</button></td>' .
+						'<td><button type="submit" class="cell-button" onclick="clickedCell(this, ' . "'title-text'" . ');">' . $row['title'] . '</button>' .
+						'<br><a href="' . $row['image'] . '" target="_blank"><img alt="img" class="title-img" src="' . $row['image'] . '" ></a></td></tr>';
 						$count += 1;
 					}
 				}
@@ -258,21 +308,24 @@
 				echo '<div id="per-page">Results per page: ';
 				if ($rpp =="5") {
 					echo '<span id="current-rpp">5</span> ' .
-					'<input type="submit" name="rpp" value="10" onclick="selectedResultsPerPage();"> ' .
-					'<input type="submit" name="rpp" value="20" onclick="selectedResultsPerPage();"></div>';
+					'<input class="rpp-opt" type="submit" name="rpp" value="10" onclick="selectedResultsPerPage();"> ' .
+					'<input class="rpp-opt" type="submit" name="rpp" value="20" onclick="selectedResultsPerPage();"></div>';
 				}
 				elseif ($rpp =="10") {
-					echo '<input type="submit" name="rpp" value="5" onclick="selectedResultsPerPage();"> ' .
+					echo '<input class="rpp-opt" type="submit" name="rpp" value="5" onclick="selectedResultsPerPage();"> ' .
 					'<span id="current-rpp">10</span> ' .
-					'<input type="submit" name="rpp" value="20" onclick="selectedResultsPerPage();"></div>';
+					'<input class="rpp-opt" type="submit" name="rpp" value="20" onclick="selectedResultsPerPage();"></div>';
 				}
 				elseif ($rpp =="20") {
-					echo '<input type="submit" name="rpp" value="5" onclick="selectedResultsPerPage();"> ' .
-					'<input type="submit" name="rpp" value="10" onclick="selectedResultsPerPage();"> ' .
+					echo '<input class="rpp-opt" type="submit" name="rpp" value="5" onclick="selectedResultsPerPage();"> ' .
+					'<input class="rpp-opt" type="submit" name="rpp" value="10" onclick="selectedResultsPerPage();"> ' .
 					'<span id="current-rpp">20</span></div>';
 				}
+				echo '<div id="page-arrows"><span id="num-results">Showing ' . $start . '-' . $end . ' of ' . $numResults . '</span>
+				<button type="submit" name="page" value="1" class="page-arrow" onclick="selectedPageButton();">&lt;&lt;</button> <button type="submit" name="page" value="' . (($page > 1) ? ($page - 1) : 1) . '"class="page-arrow" onclick="selectedPageButton();">&lt;</button>  ' .
+				$page . ' of ' . $numPages .
+				'  <button type="submit" name="page" value="' . (($page < $numPages) ? ($page + 1) : $numPages) . '"class="page-arrow" onclick="selectedPageButton();">&gt;</button> <button type="submit" name="page" value="' . $numPages . '"class="page-arrow" onclick="selectedPageButton()";>&gt;&gt;</button></div>';
 			?>
-			<div id="page-arrows"><span class="page-arrow">&lt;&lt;</span> <span class="page-arrow">&lt;</span>  1  <span class="page-arrow">&gt;</span> <span class="page-arrow">&gt;&gt;</span> </div>
 		</div>
 		</form>
 		

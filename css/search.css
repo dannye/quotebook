@@ -72,15 +72,15 @@ table {
 	width: 100%;
 }
 
+tr {
+	outline: 2px solid gray;
+}
+
 th, td {
 	padding: 15px;
 	font-size: 1.2rem;
 	border-left: 1px solid white;
 	width: 25%;
-}
-
-tr {
-	outline: 2px solid gray;
 }
 
 th button {
@@ -90,14 +90,6 @@ th button {
 
 span#asc button, span#desc button {
 	text-decoration: underline;
-}
-
-.hidden {
-	display: none;
-}
-
-.hidden button, .hidden img {
-	display: inherit;
 }
 
 #asc-up-arrow {
@@ -124,11 +116,28 @@ span#asc button, span#desc button {
 	left: -10px;
 }
 
-#selected {
+.selected {
 	margin-bottom: 30px;
 }
 
-#title-img {
+.hidden {
+	display: none;
+}
+
+.hidden button, .hidden img {
+	display: inherit;
+}
+
+.cell-button {
+	font-size: 1.2rem;
+	cursor: pointer;
+}
+
+.cell-button:hover {
+	text-decoration: underline;
+}
+
+.title-img {
 	width: 70%;
 }
 
@@ -162,6 +171,20 @@ span#asc button, span#desc button {
 	font-size: 1.3rem;
 }
 
+.rpp-opt {
+	cursor: pointer;
+}
+
+.rpp-opt:hover {
+	text-decoration: underline;
+}
+
+#num-results {
+	position: absolute;
+	bottom: 0px;
+	right: 65%;
+}
+
 #page-arrows {
 	float: right;
 	font-size: 1.2rem;
@@ -169,6 +192,7 @@ span#asc button, span#desc button {
 	bottom: 30px;
 	right: 50px;
 	white-space: pre;
+	user-select: none;
 }
 
 .page-arrow {
@@ -176,4 +200,5 @@ span#asc button, span#desc button {
 	border-radius: 3px;
 	padding: 3px;
 	background-color: rgb(233, 235, 238);
+	cursor: pointer;
 }
