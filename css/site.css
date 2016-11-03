@@ -25,7 +25,7 @@ footer {
 }
 
 body {
-	min-width: 1200px;
+	min-width: 1300px;
 	background-color: rgb(233, 235, 238);
 }
 
@@ -100,12 +100,6 @@ a {
 	position: relative;
 }
 
-#left-column {
-	float: left;
-	width: 17%;
-	min-width: 200px;
-}
-
 #game-button {
 	height: 90px;
 	padding: 10px;
@@ -113,22 +107,6 @@ a {
 	margin-top: 5px;
 	float: left;
 	border-left: 2px solid rgb(23, 35, 61);
-}
-
-#filter-header	{
-	text-align: center;
-	background: white;
-	border-bottom: 2px solid darkgray;
-}
-
-#filter-box {
-	background-color: white;
-	height: 350px;
-	margin-left: 30px;
-	margin-top: 50px;
-	padding: 10px;
-	border: 2px solid lightgray;
-	border-radius: 2px;
 }
 
 #magnifying-glass {
@@ -147,50 +125,4 @@ a {
 	background-repeat: no-repeat;
 	background-position: center;
 	cursor: pointer;
-}
-
-.filter-check {
-	float: right;
-	margin-top: 5px;
-}
-
-.filter-label {
-	width: 100%;
-	float: left;
-	color: inherit;
-	margin-top: 10px;
-	padding-top: 3px;
-	border-top: 1px dashed lightgray;
-}
-
-.filter-text {
-	float: left;
-	background-color: white;
-	border: 2px solid darkgray;
-	width: 100%;
-	margin-top: 10px;
-}
-
-.filter-label:nth-child(2) {
-	border: 0;
-}
-
-.fb-like {
-	height: 20px;
-	width: 20px;
-	float: right;
-	margin: 5px;
-	position: absolute;
-	bottom: 0;
-	right: 0;
-}
-
-.fb-share {
-	height: 30px;
-	width: 70px;
-	float: right;
-	position: absolute;
-	bottom: 0;
-	right: 30px;
-	padding: 2px;
 }
