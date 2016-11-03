@@ -283,17 +283,17 @@
 					while ($count < $end) {
 						$row = mysqli_fetch_array($response);
 						echo  '<tr><td>';
-						if ($count == 0) {
+						if ($count == $start - 1) {
 							echo '<div class=""><div class="selected">' . $row['quote'] . '</div>' .
 							'<img alt="like" class="fb-like" src="../images/facebook_like_thumb.png"/>' .
 							'<img alt="share" class="fb-share" src="../images/facebook_share.png"/></div>';
-							echo '<div class="hidden"><button class="quote-button" type="button" name="selected" value="' . $count . '" onclick="selectedQuote(this.value);">' . $row['quote'] . '</button></div>';
+							echo '<div class="hidden"><button class="quote-button" type="button" name="selected" value="' . ($count - $start + 1) . '" onclick="selectedQuote(this.value);">' . $row['quote'] . '</button></div>';
 }
 						else {
 							echo '<div class="hidden"><div class="selected">' . $row['quote'] . '</div>' .
 							'<img alt="like" class="fb-like" src="../images/facebook_like_thumb.png"/>' .
 							'<img alt="share" class="fb-share" src="../images/facebook_share.png"/></div>';
-							echo '<div class=""><button class="quote-button" type="button" name="selected" value="' . $count . '" onclick="selectedQuote(this.value);">' . $row['quote'] . '</button><div>';
+							echo '<div class=""><button class="quote-button" type="button" name="selected" value="' . ($count - $start + 1) . '" onclick="selectedQuote(this.value);">' . $row['quote'] . '</button><div>';
 						}
 						echo '</td>' .
 						'<td><button type="submit" class="cell-button" onclick="clickedCell(this, ' . "'character-text'" . ');">' . $row['character'] . '</button></td>' .
