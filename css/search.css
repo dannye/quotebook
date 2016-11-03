@@ -152,8 +152,13 @@ span#asc button, span#desc button {
 	bottom: 30px;
 }
 
+#per-page input {
+	font-size: inherit;
+}
+
 #current-rpp {
 	text-decoration: underline;
+	font-size: 1.3rem;
 }
 
 #page-arrows {
