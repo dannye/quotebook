@@ -33,11 +33,11 @@
 				<div class="filter-label">Novels
 				<input type="checkbox" name="novel-check" class="filter-check" <?php echo empty($_GET['novel-check']) ? '' : ' checked="checked" '; ?> /></div>
 				<div class="filter-label">Character</div>
-				<input type="text" name="character-search" id="character-text" class="filter-text" value="<?php echo empty($_GET['character-search']) ? '' : $_GET['character-search']; ?>" >
+				<input type="text" name="character-search" id="character-text" class="filter-text" value="<?php echo empty($_GET['character-search']) ? '' : strip_tags($_GET['character-search']); ?>" >
 				<div class="filter-label">Actor/Author</div>
-				<input type="text" name="actor-search" id="actor-text" class="filter-text" value="<?php echo empty($_GET['actor-search']) ? '' : $_GET['actor-search']; ?>" >
+				<input type="text" name="actor-search" id="actor-text" class="filter-text" value="<?php echo empty($_GET['actor-search']) ? '' : strip_tags($_GET['actor-search']); ?>" >
 				<div class="filter-label">Title</div>
-				<input type="text" name="title-search" id="title-text" class="filter-text" value="<?php echo empty($_GET['title-search']) ? '' : $_GET['title-search']; ?>" >
+				<input type="text" name="title-search" id="title-text" class="filter-text" value="<?php echo empty($_GET['title-search']) ? '' : strip_tags($_GET['title-search']); ?>" >
 			</div>
 		</div>
 		
@@ -106,12 +106,12 @@
 					characterColumn.value = "";
 					actorColumn.value = "";
 					titleColumn.value = "";
-					column.value = cell.innerHTML;
+					column.value = cell.innerText;
 					var page = document.getElementById("old-page");
 					page.value = "1";
 				}
 			</script>
-			<input type="text" id="search" name="search" value="<?php echo empty($_GET['search']) ? '' : $_GET['search']; ?>" placeholder="Search Quotebook..."/>
+			<input type="text" id="search" name="search" value="<?php echo empty($_GET['search']) ? '' : strip_tags($_GET['search']); ?>" placeholder="Search Quotebook..."/>
             <input type="submit" id="magnifying-glass" value="">
 			<input type="hidden" name="sort" value="<?php echo empty($_GET['sort']) ? 'title' : $_GET['sort']; ?>" id="old-sort">
 			<input type="hidden" name="order" value="<?php echo empty($_GET['order']) ? 'asc' : $_GET['order']; ?>" id="old-order">
@@ -271,6 +271,9 @@
 					$start = $numResults;
 				}
 				$end = $page * $rpp;
+				if ($numResults == 0) {
+					$page = 0;
+				}
 				if ($end > $numResults) {
 					$end = $numResults;
 				}
@@ -282,6 +285,29 @@
 					}
 					while ($count < $end) {
 						$row = mysqli_fetch_array($response);
+						$words = explode(" ", $search);
+						$characterWords = explode(" ", $character);
+						$actorWords = explode(" ", $actor);
+						$titleWords = explode(" ", $title);
+						for($i = 0; $i < count($words); $i++)
+						{
+							$row['quote'] = str_ireplace($words[$i], '<b>'.strtoupper($words[$i]).'</b>', $row['quote']);
+							$row['character'] = str_ireplace($words[$i], '<b>'.strtoupper($words[$i]).'</b>', $row['character']);
+							$row['actor'] = str_ireplace($words[$i], '<b>'.strtoupper($words[$i]).'</b>', $row['actor']);
+							$row['title'] = str_ireplace($words[$i], '<b>'.strtoupper($words[$i]).'</b>', $row['title']);
+						}
+						for($i = 0; $i < count($characterWords); $i++)
+						{
+							$row['character'] = str_ireplace($characterWords[$i], '<b>'.strtoupper($characterWords[$i]).'</b>', $row['character']);
+						}
+						for($i = 0; $i < count($actorWords); $i++)
+						{
+							$row['actor'] = str_ireplace($actorWords[$i], '<b>'.strtoupper($actorWords[$i]).'</b>', $row['actor']);
+						}
+						for($i = 0; $i < count($titleWords); $i++)
+						{
+							$row['title'] = str_ireplace($titleWords[$i], '<b>'.strtoupper($titleWords[$i]).'</b>', $row['title']);
+						}
 						echo  '<tr><td>';
 						if ($count == $start - 1) {
 							echo '<div class=""><div class="selected">' . $row['quote'] . '</div>' .
