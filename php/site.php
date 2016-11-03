@@ -16,7 +16,7 @@
 		echo '<div class="ribbon">';
 		echo '<img alt="img" id="facebook-logo" src="../images/facebook.png" />';
 		if ($username != "") {
-			echo '<a href="../index.php"><img alt="img" id="gear" src="../images/gear.png"/></a>';
+			echo '<a href="../index.php" id="log-out"><img alt="img" id="gear-img" src="../images/gear.png"/><span>Log Out</span></a>';
 			echo "<div id='user'>$username</div>";
 		}
 		elseif ($logIn) {

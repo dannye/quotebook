@@ -76,14 +76,30 @@ a {
 	vertical-align: middle;
 }
 
-#gear {
+#log-out {
+	height: 50px;
+	margin-top: 10px;
+	margin-left: 10px;
+	width: 150px;
+	font-size: 1.5rem;
+	float: right;
+	color: white;
 	background-color: rgb(66, 103, 178);
 	border: 1px solid rgb(41, 72, 125);
 	border-radius: 4px;
-	width: 50px;
-	margin-top: 10px;
-	margin-left: 10px;
-	float: right;
+	padding: 0;
+	vertical-align: middle;
+}
+
+#log-out span {
+	position: relative;
+	right: 0px;
+	bottom: 10px;
+	color: inherit;
+}
+
+#gear-img {
+	width: 42px;
 }
 
 #page {
