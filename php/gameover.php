@@ -25,14 +25,23 @@
 		<div id="page">
 			<img alt="img" id="gameover-screen-pic" src="../images/game_over.png"/>
 			<div id="game-buttons">
-				<a href="./question1.php" class="button" id="try-again">TRY AGAIN</a>
+				<a href="./endless.php" class="button" id="try-again">TRY AGAIN</a>
 				<a href="./game.php" class="button" id="main-menu">MAIN MENU</a>
 			</div>
+			
 			<div class="score-display-div">
-				<b><em>SCORE: 0</em></b>
-			</div>
+				<?php	
+				if (!isset($score)) {
+						$score = 0;
+					}
+				if (isset($_GET["w1"])) {
+					$score = $_GET["w1"];
+				}
+				echo '<b><em>'."SCORE: " . $score .'</em></b>';
+				?>
+			</div>		
 		</div>
-		
+	
 		<footer>
 			&copy; 2016
 		</footer>

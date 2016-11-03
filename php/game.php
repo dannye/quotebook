@@ -1,20 +1,3 @@
-Skip to content
-This repository
-Search
-Pull requests
-Issues
-Gist
- @adwoold
- Watch 1
-  Star 0
-  Fork 0 dannye/quotebook
- Code  Issues 0  Pull requests 0  Projects 0  Wiki  Pulse  Graphs
-Branch: master Find file Copy pathquotebook/php/game.php
-115b0ab  19 hours ago
-@dannye dannye Add log in functionality
-1 contributor
-RawBlameHistory     
-Executable File  40 lines (30 sloc)  744 Bytes
 <?php
 @session_start();
 ?>
@@ -42,7 +25,7 @@ Executable File  40 lines (30 sloc)  744 Bytes
 		<div id="page">
 			
 			<img alt="img" id="game-screen-pic" src="../images/quote.png"/>
-			<a href="question1.php" class="button" id="endless">ENDLESS</a>
+			<a href="endless.php" class="button" id="endless">ENDLESS</a>
 			<a href="" class="button" id="timed">TIMED</a>
 			<a href="" class="button" id="challenge">CHALLENGE A FRIEND</a>
 			
@@ -54,5 +37,3 @@ Executable File  40 lines (30 sloc)  744 Bytes
 		
 	</body>
 </html>
-Contact GitHub API Training Shop Blog About
-© 2016 GitHub, Inc. Terms Privacy Security Status Help
