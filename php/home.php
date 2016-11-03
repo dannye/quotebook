@@ -31,26 +31,27 @@
 		?>
 		<div id="page">
 			<form action="search.php" method="GET">
-			<input type="text" id="search" name="search" placeholder="Search Quotebook..."/>
-			<input type="submit" id="magnifying-glass" value=""><br>
+				<input type="text" id="search" name="search" placeholder="Search Quotebook..."/>
+				<input type="submit" id="magnifying-glass" value=""><br>
 			</form>
 			<a href="submit.php" id="submit-quote">Submit New Quote</a>
 			<h2 id="trending-title">Trending</h2>
 			<div id="trending">
 				<?php
-				require_once('mysqli_connect.php');
-				$query = "SELECT * FROM quotes ORDER BY RAND() LIMIT 10";
-				$response = mysqli_query($dbc, $query) or die(mysqli_error($dbc));
-				$num_rows = $response->num_rows;
-				while($row = $response->fetch_array())
-				{
-					echo '<div class="trending-quote">' .
-					$row['title'] . '<br><br>"' .
-					$row['quote'] . '"<br>-' .
-					$row['character'] .
-					'<img alt="like" class="fb-like" src="../images/facebook_like_thumb.png"/>' . 
-					'<img alt="share" class="fb-share" src="../images/facebook_share.png"/></div>';
-				}
+					require_once('mysqli_connect.php');
+					$query = "SELECT * FROM quotes ORDER BY RAND() LIMIT 10";
+					$response = mysqli_query($dbc, $query) or die(mysqli_error($dbc));
+					$num_rows = $response->num_rows;
+					while($row = $response->fetch_array())
+					{
+						echo '<div class="trending-quote">' .
+						$row['title'] . '<br><br>"' .
+						$row['quote'] . '"<br>-' .
+						$row['character'] .
+						'<img alt="like" class="fb-like" src="../images/facebook_like_thumb.png"/>' . 
+						'<img alt="share" class="fb-share" src="../images/facebook_share.png"/></div>';
+					}
+					mysqli_close($dbc);
 				?>
 			</div>
 		</div>

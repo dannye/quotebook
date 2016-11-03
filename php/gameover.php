@@ -19,27 +19,40 @@
 	
 	<body>
 		<?php
-			buildHeader(false, false);
+			buildHeader(true, false);
 		?>
 		
 		<div id="page">
-			<img alt="img" id="gameover-screen-pic" src="../images/game_over.png"/>
-			<div id="game-buttons">
-				<a href="./endless.php" class="button" id="try-again">TRY AGAIN</a>
-				<a href="./game.php" class="button" id="main-menu">MAIN MENU</a>
-			</div>
-			
-			<div class="score-display-div">
-				<?php
+			<?php
 				$score = 0;
+				$source = "endless";
 				if ($_SERVER["REQUEST_METHOD"] == "POST") {
 					if (isset($_POST["score"])) {
 						$score = $_POST["score"];
 					}
+					if (isset($_POST["source"])) {
+						$source = $_POST["source"];
+					}
 				}
-				echo '<b><em>'."SCORE: " . $score .'</em></b>';
-				?>
-			</div>
+				if ($_SERVER["REQUEST_METHOD"] == "GET") {
+					if (isset($_GET["score"])) {
+						$score = $_GET["score"];
+					}
+					if (isset($_GET["source"])) {
+						$source = $_GET["source"];
+					}
+				}
+				$source = $source . ".php";
+			echo '<img alt="img" id="gameover-screen-pic" src="../images/game_over.png"/>' .
+			'<div id="game-buttons">' .
+				'<a href="' . $source . '" class="button" id="try-again">TRY AGAIN</a>' .
+				'<a href="game.php" class="button" id="main-menu">MAIN MENU</a>' .
+			'</div>' .
+			
+			'<div class="score-display-div">' .
+					'<b><em>'."SCORE: " . $score .'</em></b>' .
+			'</div>';
+			?>
 		</div>
 		
 		<footer>

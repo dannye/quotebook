@@ -19,74 +19,60 @@
 	
 	<body>
 		<?php
-			buildHeader(false, false);
+			buildHeader(true, false);
 		?>
 		
 		<div id="page">
 			<div class="question-display-div">
 			<?php
-			if (!isset($score)) {
-				$score = 0;
-			}
-			if (isset($_GET["w1"]) && isset($_GET["w2"])) {
-				$score = $_GET["w1"];
-				$currTime = $_GET["w2"];
-			}
-			$startTime = 60;
-			if (!isset($currTime)) {
-				$currTime = $startTime;
-			}
-			require_once('mysqli_connect.php');
-			$query = "SELECT * FROM quotes ORDER BY RAND() LIMIT 1";
-			$query2 = "SELECT t.character FROM quotes AS t ORDER BY RAND() LIMIT 10";
-			$response = mysqli_query($dbc, $query) or die(mysqli_error($dbc));
-			$response2 = mysqli_query($dbc, $query2) or die(mysqli_error($dbc));
-			$num_rows = $response2->num_rows;
-			if ($response) {
-			if ($response2) {
-			$row = mysqli_fetch_array($response);
-			$row2 = mysqli_fetch_array($response2, MYSQLI_NUM);
-			$wrongAnswers = array();
-			$possibleAnswers = array();
-			while($row2 = $response2->fetch_array()) {
-				array_push($possibleAnswers, $row2['character']);
-			}	
-			$j = 0;
-			for ($i =0; $i < 10; $i++) {
-				if (count($wrongAnswers) >= 3) {
-				break;
-				}
-				else {
-					array_push($wrongAnswers, $possibleAnswers[$i]);
-					if ($wrongAnswers[$j] == $row['character']) {
-						unset($wrongAnswers[$j]);
-						$wrongAnswers = array_values($wrongAnswers);
+			$score = 0;
+			$currTime = 60;
+				if ($_SERVER["REQUEST_METHOD"] == "POST") {
+					if (isset($_POST["score"])) {
+						$score = $_POST["score"];
 					}
-					else {
-						$j++;	
+					if (isset($_POST["time"])) {
+						$currTime = $_POST["time"] - 1;
 					}
 				}
-			}
-			$correct = $row['character'];
-			echo "Which character in the movie " . $row['title'] . " said the line:<br><br>" .
-			$row['quote'] .
-			'</div>' .
-			'<button class="button" id="answer1" onclick="checkIfRightAnswer(this.id)">'. $wrongAnswers[0] .'</button>'.
-			'<button class="button" id="correct" onclick="checkIfRightAnswer(this.id)">'. $correct  .'</button>'.
-			'<button class="button" id="answer3" onclick="checkIfRightAnswer(this.id)">'. $wrongAnswers[1]  .'</button>'.
-			'<button class="button" id="answer4" onclick="checkIfRightAnswer(this.id)">'. $wrongAnswers[2] .'</button>'.
-			'<div class="score-display-div">'.
-				'<b><em>'."SCORE: " . $score .'</em></b><br>'.
-				
-			'</div>';
-			}
-			}
-			echo
-			'<div id="timer" class="timer-display-div">' .
-			'<b><em>' ."TIMER: " . $currTime .'</em></b>'.
-			'</div>';
+				require_once('mysqli_connect.php');
+				$query = "SELECT DISTINCT `character`, `quote`, `title` FROM quotes ORDER BY RAND() LIMIT 4";
+				$response = mysqli_query($dbc, $query) or die(mysqli_error($dbc));
+				if ($response) {
+					$correctIndex = rand(0, 3);
+					$answers = array();
+					$values = array();
+					$row;
+					$j = 0;
+					for ($i = 0; $i < 4; $i++) {
+						if ($i == $correctIndex) {
+							$row = mysqli_fetch_array($response);
+							array_push($answers, $row['character']);
+							array_push($values, 1);
+						}
+						else {
+							$row2 = mysqli_fetch_array($response);
+							array_push($answers, $row2['character']);
+							array_push($values, 0);
+						}
+					}
+					echo 'Which character in the work "' . $row['title'] . '" said the line:<br><br>"' .
+					$row['quote'] . '"</div>' .
+					'<form id="game-form" action="timed.php" method="POST">' .
+					'<input type="hidden" name="source" value="timed" id="source">' .
+					'<input type="hidden" name="time" value="' . $currTime . '"id="time">';
+					for ($i = 0; $i < 4; $i++) {
+						echo '<button name="score" value="' . ($score + $values[$i]) . '" class="button">'. $answers[$i] .'</button>';
+					}
+					echo '<div class="score-display-div"><b><em>SCORE: ' .
+					$score .'</em></b></div></form>';
+				}
+				echo
+				'<div id="timer" class="timer-display-div">' .
+				'<b><em>' ."TIMER: " . $currTime .'</em></b>'.
+				'</div>';
+				mysqli_close($dbc);
 			?>		
-			
 		</div>
 		
 		<footer>
@@ -97,24 +83,14 @@
 			var score = <?php echo json_encode($score); ?> ;
 			var currTime = <?php echo json_encode($currTime); ?> ;
 			var t = setInterval(function() {
-				document.getElementById('timer').innerHTML = "<b><em>TIMER: " + currTime-- + "</em></b>";
-				
+				document.getElementById('timer').innerHTML = "<b><em>TIMER: " + --currTime + "</em></b>";
+				document.getElementById('time').value = currTime;
+				source = document.getElementById('source').value;
 				if (currTime <= 0 ) {
 					clearInterval(t);
-					window.location.href = "gameover.php?w1=" + score;
+					window.location.href = "gameover.php?source=" + source + "&score=" + score;
 				} 
 			}, 1000);
-			function checkIfRightAnswer(clicked_id) {
-
-				if (clicked_id === "correct"){
-					score++;
-					window.location.href = "timed.php?w1=" + score + "&w2=" + currTime;
-				}
-				else {
-					window.location.href = "timed.php?w1=" + score + "&w2=" + currTime;
-				}
-			}
-			
 		</script>
 	</body>
 </html>
