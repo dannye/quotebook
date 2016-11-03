@@ -33,6 +33,26 @@
 	position: relative;
 }
 
+.fb-like {
+	height: 20px;
+	width: 20px;
+	float: right;
+	margin: 5px;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+}
+
+.fb-share {
+	height: 30px;
+	width: 70px;
+	float: right;
+	position: absolute;
+	bottom: 0;
+	right: 30px;
+	padding: 2px;
+}
+
 #submit-quote {
 	background-color: rgb(66, 103, 178);
 	display: block;

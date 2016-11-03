@@ -58,6 +58,25 @@
 						element.removeChild(child);
 					}
 				}
+				
+				function selectedQuote(value) {
+					var index = parseInt(value);
+					var table = document.getElementById("results-table");
+					if (table.rows.length > 0) {
+						console.log(table.rows.length);
+						var selected = table.rows[index + 1].cells[0];
+						console.log(index + 1);
+						selected.firstChild.className = "";
+						selected.children[1].className = "hidden";
+						for (var i = 1; i < table.rows.length; i++) {
+							var quote = table.rows[i].cells[0];
+							if (i != index + 1) {
+								quote.firstChild.className = "hidden";
+								quote.children[1].className = "";
+							}
+						}
+					}
+				}
 			</script>
 			<input type="text" id="search" name="search" value="<?php echo empty($_GET['search']) ? '' : $_GET['search']; ?>" placeholder="Search Quotebook..."/>
             <input type="submit" id="magnifying-glass" value="">
@@ -75,10 +94,10 @@
 					}
 					if ($sort == strtolower($name)) {
 						if ($order == "asc") {
-							echo '<span id="up-arrow"><button type="submit" name="order" value="asc" onclick="sortAscDesc();">&#9650;</button></span><span id="down-arrow"><button type="submit" name="order" value="desc" onclick="sortAscDesc();">&#9663;</button></span>';
+							echo '<span id="asc-up-arrow"><button type="submit" name="order" value="asc" onclick="sortAscDesc();">&#9650;</button></span><span id="down-arrow"><button type="submit" name="order" value="desc" onclick="sortAscDesc();">&#9663;</button></span>';
 						}
 						else {
-							echo '<span id="up-arrow"><button type="submit" name="order" value="asc" onclick="sortAscDesc();">&#9653;</button></span><span id="down-arrow"><button type="submit" name="order" value="desc" onclick="sortAscDesc();">&#9660;</button></span>';
+							echo '<span id="up-arrow"><button type="submit" name="order" value="asc" onclick="sortAscDesc();">&#9653;</button></span><span id="desc-down-arrow"><button type="submit" name="order" value="desc" onclick="sortAscDesc();">&#9660;</button></span>';
 						}
 					}
 					echo '</th>';
@@ -88,7 +107,6 @@
 				if (isset($_GET['sort'])) {
 					if ($_GET['sort'] == "quote" || $_GET['sort'] == "character" || $_GET['sort'] == "actor" || $_GET['sort'] == "title") {
 						$sort = $_GET['sort'];
-						//echo '<input type="hidden" name="sort" value="' . $sort . '" id="old-sort">';
 					}
 				}
 				$order = "asc";
@@ -98,7 +116,7 @@
 					}
 				}
 				
-				echo '<div id="results"><table><tr>';
+				echo '<div id="results"><table id="results-table"><tr>';
 				
 				addHeader("Quote", $sort, $order);
 				addHeader("Character", $sort, $order);
@@ -196,21 +214,28 @@
 				}
 				$query = $query . "ORDER BY `$sort` $order LIMIT 5";
 				$response = mysqli_query($dbc, $query) or die(mysqli_error($dbc));
+				$count = 0;
 				if ($response) {
-					$row = mysqli_fetch_array($response);
-					echo  '<tr><td><div id="selected">' . $row['quote'] . '</div>' .
-					'<img alt="like" class="fb-like" src="../images/facebook_like_thumb.png"/>' .
-					'<img alt="share" class="fb-share" src="../images/facebook_share.png"/></td>' .
-					'<td>' . $row['character'] . '</td>' .
-					'<td>' . $row['actor'] . '</td>' .
-					'<td>' . $row['title'] .
-					'<br><img alt="img" id="title-img" src="' . $row['image'] . '" /></td>';
 					while ($row = mysqli_fetch_array($response)) {
-						echo  '<tr><td><div>' . $row['quote'] . '</div>' .
+						echo  '<tr><td>';
+						if ($count == 0) {
+							echo '<div class=""><div id="selected">' . $row['quote'] . '</div>' .
+							'<img alt="like" class="fb-like" src="../images/facebook_like_thumb.png"/>' .
+							'<img alt="share" class="fb-share" src="../images/facebook_share.png"/></div>';
+							echo '<div class="hidden"><button type="button" name="selected" value="' . $count . '" onclick="selectedQuote(this.value);">' . $row['quote'] . '</button></div>';
+}
+						else {
+							echo '<div class="hidden"><div id="selected">' . $row['quote'] . '</div>' .
+							'<img alt="like" class="fb-like" src="../images/facebook_like_thumb.png"/>' .
+							'<img alt="share" class="fb-share" src="../images/facebook_share.png"/></div>';
+							echo '<div class=""><button type="button" name="selected" value="' . $count . '" onclick="selectedQuote(this.value);">' . $row['quote'] . '</button><div>';
+						}
+						echo '</td>' .
 						'<td>' . $row['character'] . '</td>' .
 						'<td>' . $row['actor'] . '</td>' .
 						'<td>' . $row['title'] .
-						'<br><img alt="img" id="title-img" src="' . $row['image'] . '" /></td>';
+						'<br><img alt="img" id="title-img" src="' . $row['image'] . '" /></td></tr>';
+						$count += 1;
 					}
 				}
 				mysqli_close($dbc);

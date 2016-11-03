@@ -39,17 +39,17 @@
 			<div id="trending">
 				<?php
 				require_once('mysqli_connect.php');
-				$query = "SELECT * FROM quotes ORDER BY RAND() LIMIT 2";
+				$query = "SELECT * FROM quotes ORDER BY RAND() LIMIT 10";
 				$response = mysqli_query($dbc, $query) or die(mysqli_error($dbc));
 				$num_rows = $response->num_rows;
 				while($row = $response->fetch_array())
 				{
-					echo '<div class="trending-quote">' . 
-					$row['title'] . '<br><br>' . 
-					$row['quote'] . '<br>' . 
-					'<img alt="like" class="fb-like" src="../images/facebook_like_thumb.png"/>
-					<img alt="share" class="fb-share" src="../images/facebook_share.png"/>
-					</div>';
+					echo '<div class="trending-quote">' .
+					$row['title'] . '<br><br>"' .
+					$row['quote'] . '"<br>-' .
+					$row['character'] .
+					'<img alt="like" class="fb-like" src="../images/facebook_like_thumb.png"/>' . 
+					'<img alt="share" class="fb-share" src="../images/facebook_share.png"/></div>';
 				}
 				?>
 			</div>
