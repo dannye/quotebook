@@ -59,6 +59,14 @@
 					}
 				}
 				
+				function selectedResultsPerPage() {
+					var element = document.getElementById("page");
+					var child = document.getElementById("old-rpp");
+					if (child != null) {
+						element.removeChild(child);
+					}
+				}
+				
 				function selectedQuote(value) {
 					var index = parseInt(value);
 					var table = document.getElementById("results-table");
@@ -82,6 +90,7 @@
             <input type="submit" id="magnifying-glass" value="">
 			<input type="hidden" name="sort" value="<?php echo empty($_GET['sort']) ? 'title' : $_GET['sort']; ?>" id="old-sort">
 			<input type="hidden" name="order" value="<?php echo empty($_GET['order']) ? 'asc' : $_GET['order']; ?>" id="old-order">
+			<input type="hidden" name="rpp" value="<?php echo empty($_GET['rpp']) ? '5' : $_GET['rpp']; ?>" id="old-rpp">
 			<?php
 				function addHeader($name, $sort, $order) {
 					echo '<th>';
@@ -113,6 +122,12 @@
 				if (isset($_GET['order'])) {
 					if ($_GET['order'] == "asc" || $_GET['order'] == "desc") {
 						$order = $_GET['order'];
+					}
+				}
+				$rpp = "5";
+				if (isset($_GET['rpp'])) {
+					if ($_GET['rpp'] == "5" || $_GET['rpp'] == "10" || $_GET['rpp'] == "20") {
+						$rpp = $_GET['rpp'];
 					}
 				}
 				
@@ -212,7 +227,7 @@
 						//echo $query;
 					}
 				}
-				$query = $query . "ORDER BY `$sort` $order LIMIT 5";
+				$query = $query . "ORDER BY `$sort` $order LIMIT $rpp";
 				$response = mysqli_query($dbc, $query) or die(mysqli_error($dbc));
 				$count = 0;
 				if ($response) {
@@ -238,10 +253,25 @@
 						$count += 1;
 					}
 				}
+				echo '</table></div>';
 				mysqli_close($dbc);
-				?>
-			</table></div>
-			<div id="per-page">Results per page: <span id="current-rpp">5</span> 10 20</div>
+				echo '<div id="per-page">Results per page: ';
+				if ($rpp =="5") {
+					echo '<span id="current-rpp">5</span> ' .
+					'<input type="submit" name="rpp" value="10" onclick="selectedResultsPerPage();"> ' .
+					'<input type="submit" name="rpp" value="20" onclick="selectedResultsPerPage();"></div>';
+				}
+				elseif ($rpp =="10") {
+					echo '<input type="submit" name="rpp" value="5" onclick="selectedResultsPerPage();"> ' .
+					'<span id="current-rpp">10</span> ' .
+					'<input type="submit" name="rpp" value="20" onclick="selectedResultsPerPage();"></div>';
+				}
+				elseif ($rpp =="20") {
+					echo '<input type="submit" name="rpp" value="5" onclick="selectedResultsPerPage();"> ' .
+					'<input type="submit" name="rpp" value="10" onclick="selectedResultsPerPage();"> ' .
+					'<span id="current-rpp">20</span></div>';
+				}
+			?>
 			<div id="page-arrows"><span class="page-arrow">&lt;&lt;</span> <span class="page-arrow">&lt;</span>  1  <span class="page-arrow">&gt;</span> <span class="page-arrow">&gt;&gt;</span> </div>
 		</div>
 		</form>
