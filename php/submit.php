@@ -113,13 +113,25 @@
 					quoteError.innerHTML = "Max quote length is 1000 characters.";
 					success =  false;
 				}
+				else if (quote.includes('"')) {
+					quoteError.innerHTML = "No double quotation marks.";
+					success = false;
+				}
 				else if (character.length >= 50) {
 					characterError.innerHTML = "Max character length is 50 characters.";
 					success =  false;
 				}
+				else if (character.includes('"')) {
+					characterError.innerHTML = "No double quotation marks.";
+					success = false;
+				}
 				else if (actor.length >= 50) {
 					actorError.innerHTML = "Max actor length is 50 characters.";
 					success =  false;
+				}
+				else if (actor.includes('"')) {
+					actorError.innerHTML = "No double quotation marks.";
+					success = false;
 				}
 				else if (title == null || title == "") {
 					titleError.innerHTML = "You must enter a title.";
@@ -128,6 +140,10 @@
 				else if (title.length >= 50) {
 					titleError.innerHTML = "Max title length is 50 characters.";
 					success =  false;
+				}
+				else if (title.includes('"')) {
+					titleError.innerHTML = "No double quotation marks.";
+					success = false;
 				}
 				else if (image.length >= 200) {
 					imageError.innerHTML = "Max image length is 200 characters.<br><br>";
