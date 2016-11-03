@@ -10,6 +10,12 @@
 	$affected = -1;
 	if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		if (isset($_POST['submit'])) {
+			$quote = "";
+			$character = "";
+			$actor = "";
+			$title = "";
+			$image = "";
+			$media = "";
 			if ($_POST['quote'] != "") {
 				$quote = $_POST['quote'];
 			}
@@ -29,8 +35,16 @@
 				$media = $_POST['media'];
 			}
 			
+			$imageQuery = "SELECT `image` FROM `quotes` WHERE `title` = '$title' LIMIT 1";
+			$imageResponse = mysqli_query($dbc, $imageQuery) or die(mysqli_error($dbc));
+			if ($imageResponse) {
+				$imageName = mysqli_fetch_array($imageResponse)['image'];
+				if ($image == "") {
+					$image = $imageName;
+				}
+			}
 			if ($quote != "") {
-				$query = "INSERT INTO quotes VALUES (DEFAULT,?,?,?,?,?,?)";
+				$query = "INSERT INTO `quotes` VALUES (DEFAULT,?,?,?,?,?,?)";
 				$stmt = mysqli_prepare($dbc, $query);
 				mysqli_stmt_bind_param($stmt, "ssssss", $quote, $character, $actor, $title, $image, $media);
 				mysqli_stmt_execute($stmt);
