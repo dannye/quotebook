@@ -95,6 +95,7 @@ span#asc button, span#desc button {
 .hidden {
 	display: none;
 }
+
 .hidden button, .hidden img {
 	display: inherit;
 }

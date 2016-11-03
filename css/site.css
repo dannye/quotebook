@@ -88,8 +88,8 @@ a {
 
 #page {
 	width: 60%;
-	height: calc(100vh - 250px);
-	min-height: 600px;
+	height: calc(100vh - 225px);
+	min-height: 700px;
 	min-width: 600px;
 	text-align: center;
 	border: 1px solid lightgray;
