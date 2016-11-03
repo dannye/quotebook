@@ -146,12 +146,14 @@ span#asc button, span#desc button {
 	width: 20px;
 	float: right;
 	margin: 5px;
+	cursor: pointer;
 }
 
 .fb-share {
 	height: 30px;
 	width: 70px;
 	float: right;
+	cursor: pointer;
 }
 
 #per-page {

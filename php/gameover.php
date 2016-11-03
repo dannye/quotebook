@@ -30,18 +30,18 @@
 			</div>
 			
 			<div class="score-display-div">
-				<?php	
-				if (!isset($score)) {
-						$score = 0;
+				<?php
+				$score = 0;
+				if ($_SERVER["REQUEST_METHOD"] == "POST") {
+					if (isset($_POST["score"])) {
+						$score = $_POST["score"];
 					}
-				if (isset($_GET["w1"])) {
-					$score = $_GET["w1"];
 				}
 				echo '<b><em>'."SCORE: " . $score .'</em></b>';
 				?>
-			</div>		
+			</div>
 		</div>
-	
+		
 		<footer>
 			&copy; 2016
 		</footer>
