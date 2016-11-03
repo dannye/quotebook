@@ -46,11 +46,23 @@
 .score-display-div {
 	text-align: center;
 	width: 50%;
-	height: 6rem;
+	height: 8rem;
 	border: 2px solid lightgray;
 	border-radius: 2px;
 	margin: 40px auto;
 	padding: 20px;
+	font-size:40px;
+	background-color: rgb(233, 235, 238);
+}
+
+.timer-display-div {
+	text-align: center;
+	width: 50%;
+	height: 5rem;
+	border: 2px solid lightgray;
+	border-radius: 2px;
+	margin: 25px auto;
+	padding: 15px;
 	font-size:40px;
 	background-color: rgb(233, 235, 238);
 }

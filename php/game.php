@@ -26,8 +26,7 @@
 			
 			<img alt="img" id="game-screen-pic" src="../images/quote.png"/>
 			<a href="endless.php" class="button" id="endless">ENDLESS</a>
-			<a href="" class="button" id="timed">TIMED</a>
-			<a href="" class="button" id="challenge">CHALLENGE A FRIEND</a>
+			<a href="timed.php" class="button" id="timed">TIMED</a>
 			
 		</div>
 
