@@ -266,6 +266,9 @@
 				$query = "SELECT * " . $query . " ORDER BY `$sort` $order";
 				$response = mysqli_query($dbc, $query) or die(mysqli_error($dbc));
 				$numPages = ceil($numResults / $rpp);
+				if ($page > $numPages) {
+					$page = 1;
+				}
 				$start = 1 + ($page - 1) * $rpp;
 				if ($start > $numResults) {
 					$start = $numResults;
